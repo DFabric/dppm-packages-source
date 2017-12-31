@@ -1,0 +1,85 @@
+package: ghost
+name: Ghost
+type: app
+category: [blog, cms]
+license: MIT
+url: https://ghost.org/
+docs: https://docs.ghost.org
+description: Simple and powerful blogging/publishing platform
+info: After the installation visit /ghost and create your admin user to login to the Ghost admin
+
+deps:
+  nodejs: ^6.9.0 || ^8.9.0
+
+version:
+  src: lib/node_modules/ghost/package.json
+  path: version
+
+arch:
+  self:
+    src: https://github.com/TryGhost/Ghost
+    regex: '(?<=data-name=")[0-9.]+(?=")'
+
+tags:
+  latest:
+    src: https://github.com/TryGhost/Ghost/releases/latest
+    regex: (?<=tag/).*(?=" )
+
+config:
+  url:
+    path: url
+  host:
+    path: server.host
+  port:
+    path: server.port
+  database_type:
+    path: database.client
+  database_host:
+    path: database.connection.host
+  database_user:
+    path: database.connection.user
+  database_password:
+    path: database.connection.password
+  database_name:
+    path: database.connection.database
+
+vars:
+- lib/node_modules/ghost/package.json
+- core/server/config/defaults.json
+
+exec:
+  start: lib/nodejs/bin/node lib/node_modules/ghost/index --production
+
+tasks:
+  build:
+  - npm install ghost -g --unsafe-perm --prefix .
+  # Set defaults to the production config
+  - config = "lib/node_modules/ghost/core/server/config/env/config.production.json"
+  - set ${config} url "http://localhost:2368"
+  - set ${config} server {}
+  - set ${config} server.host "[::1]"
+  - set ${config} server.port 2368
+
+  # set sqlite3 for the default database
+  - set ${config} database.client "sqlite3"
+  - set ${config} database.connection.filename "content/data/ghost.db"
+
+  # Symlink to standard locations
+  - symlink lib/node_modules/ghost/content srv
+  - symlink ../lib/node_modules/ghost/core/server/config/env/config.production.json etc/config.json
+
+  add:
+  - cd lib/node_modules/ghost
+  - config = "core/server/config/env/config.production.json"
+  - if DATABASE_TYPE = mysql || DATABASE_TYPE = sqlite3:
+    - set ${config} database.client "${DATABASE_TYPE}"
+  - else:
+    - "puts unsupported database: ${DATABASE_TYPE}"
+    - exit 1
+  # Init or migrate database if needed
+  - if NODE_ENV?:
+    - node_env = "${NODE_ENV}"
+  - else:
+    - node_env = "production"
+  - node node_modules/knex-migrator/bin/knex-migrator init NODE_ENV=${node_env}
+  - node node_modules/knex-migrator/bin/knex-migrator migrate NODE_ENV=${node_env}

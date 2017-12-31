@@ -1,0 +1,60 @@
+package: nodejs
+name: Node.js
+url: https://nodejs.org/
+type: lib
+category: [javascript, nodejs]
+license: BSD
+description: Node.js® is a JavaScript runtime built on Chrome's V8 JavaScript engine
+infos: npm is also included
+
+version:
+  src: bin/node -v
+  regex: (?<=:"v).*
+
+arch:
+  self:
+    src: https://nodejs.org/dist/index.json
+  alias:
+    armhf: armhfl
+    armv6: armv6l
+    x86-64: x64
+  linux:
+    arm64: (?<=:"v).*(?=","date.*linux-arm64)
+    armhf: (?<=:"v).*(?=","date.*linux-armhfl)
+    armv6: (?<=:"v).*(?=","date.*linux-armv6l)
+    ppc64: (?<=:"v).*(?=","date.*linux-aix-ppc64)
+    ppc64le: (?<=:"v).*(?=","date.*linux-ppc64le)
+    x86: (?<=:"v).*(?=","date.*linux-x86)
+    x86-64: (?<=:"v).*(?=","date.*linux-x64)
+  darwin:
+    x86-64: (?<=:"v).*(?=","date.*darwin-x64)
+
+tags:
+  self:
+    regex: (?<=node-v).*(?=.pkg)
+  stable:
+    src: https://nodejs.org/dist/latest-v8.x/SHASUMS256.txt
+  latest:
+    src: https://nodejs.org/dist/latest/SHASUMS256.txt
+  latest-0.10:
+    src: https://nodejs.org/dist/latest-v0.10.x/SHASUMS256.txt
+  latest-0.12:
+    src: https://nodejs.org/dist/latest-v0.12.x/SHASUMS256.txt
+  latest-4:
+    src: https://nodejs.org/dist/latest-v4.x/SHASUMS256.txt
+  latest-5:
+    src: https://nodejs.org/dist/latest-v5.x/SHASUMS256.txt
+  latest-6:
+    src: https://nodejs.org/dist/latest-v6.x/SHASUMS256.txt
+  latest-7:
+    src: https://nodejs.org/dist/latest-v7.x/SHASUMS256.txt
+  latest-8:
+    src: https://nodejs.org/dist/latest-v8.x/SHASUMS256.txt
+
+tasks:
+  build:
+  - node = "node-v${VERSION}-${KERNEL}-${ARCH_ALIAS}"
+  - getfile https://nodejs.org/dist/v${VERSION}/node-v${VERSION}-${KERNEL}-${ARCH_ALIAS}.tar.xz
+  - untar_xz ${node}.tar.xz .
+  - glob mv ${node}/* .
+  - glob rm_r ${node}*

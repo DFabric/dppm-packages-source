@@ -1,0 +1,21 @@
+package: git
+name: Git
+url: https://git-scm.com
+type: lib
+category: [core]
+license: (GPL-2.0 AND LGPL-2.1)
+description: The Git distributed version control system
+infos: Statically linked Git
+
+arch:
+  self:
+    src: https://bitbucket.org/dfabric/packages/downloads/SHA512SUMS
+  linux:
+    arm64: (?<=git-static_).*(?=_linux_arm64)
+    armhf: (?<=git-static_).*(?=_linux_armhf)
+    x86-64: (?<=git-static_).*(?=_linux_x86-64)
+
+tags:
+  latest:
+    src: https://bitbucket.org/dfabric/packages/downloads/SHA512SUMS
+    regex: (?<=git-static_).*(?=_linux_arm64)

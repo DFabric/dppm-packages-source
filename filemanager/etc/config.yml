@@ -1,0 +1,14 @@
+port: 80
+noAuth: false
+address: "[::1]"
+reCaptchaKey: ''
+reCaptchaSecret: ''
+database: srv/filemanager.db
+log: stdout
+plugin: ''
+scope: srv/files
+allowCommands: true
+allowEdit: true
+allowNew: true
+commands:
+- git

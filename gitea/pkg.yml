@@ -1,0 +1,74 @@
+package: gitea
+name: Gitea
+type: app
+category: [go]
+url: https://gitea.io/
+license: MIT
+description: Git with a cup of tea - A painless self-hosted Git service
+info: When accessed for the fist time, keeping the default values is recommended on the web installer
+
+deps:
+  git: ">=1.7.1"
+
+version:
+  cmd: bin/gitea -v
+  regex: (?<=Gitea version ).*(?= built with.*)
+
+arch:
+  self:
+    src: https://dl.gitea.io/gitea/?sort=name&order=desc
+    regex: (?<=\./)[0-9].*(?=/)
+  alias:
+    x86-64: amd64
+    x86: 386
+    arm64: arm64
+    armhf: arm-7
+    armv6: arm-6
+  linux:
+    arm64: null
+    armhf: null
+    armv6: null
+    x86: null
+    x86-64: null
+
+tags:
+  latest:
+    src: https://github.com/go-gitea/gitea/releases/latest
+    regex: (?<=tag/v).*(?=" )
+
+# https://henriquedias.com/filemanager/configuration/
+config:
+  url:
+    path: server.ROOT_URL
+  domain:
+    path: server.DOMAIN
+  host:
+    path: server.HTTP_ADDR
+  port:
+    path: server.HTTP_PORT
+  database_type:
+    path: database.DB_TYPE
+  database_host:
+    path: database.DB_HOST
+  database_user:
+    path: database.DB_USER
+  database_password:
+    path: database.DB_PASSWD
+  database_name:
+    path: database.DB_NAME
+
+exec:
+  start: bin/gitea web -c ../../etc/config.ini
+
+tasks:
+  build:
+  # Download the archive
+  - mkdir bin tmp
+  - getfile https://dl.gitea.io/gitea/${VERSION}/gitea-${VERSION}-${KERNEL}-${ARCH_ALIAS} bin/gitea
+  - chmod bin/gitea 750
+  add:
+  - if DATABASE_TYPE = sqlite3 || DATABASE_TYPE = mysql || DATABASE_TYPE = postgres || DATABASE_TYPE = mssql:
+    # Good
+  - else:
+    - "puts unsupported database: ${DATABASE_TYPE}"
+    - exit 1

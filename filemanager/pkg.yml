@@ -1,0 +1,66 @@
+package: go-filemanager
+name: Go-filemanager
+type: app
+category: [go]
+url: https://gitea.io/
+license: Apache-2.0
+description: Web File Manager which can be used as a middleware or standalone app
+infos: File Manager
+
+optdeps:
+- git: ">=1.7.1"
+
+version:
+  cmd: bin/filemanager -v
+  regex: (?<=filemanager version ).*
+
+arch:
+  self:
+    src: https://github.com/hacdias/filemanager
+    regex: '(?<=data-name="v)[0-9.]+(?=")'
+  alias:
+    x86-64: amd64
+    x86: 386
+    armhf: arm
+  linux:
+    arm64: null
+    armhf: null
+    x86: null
+    x86-64: null
+  freebsd:
+    x86: null
+    x86-64: null
+  netbsd:
+    armhf: null
+    x86: null
+    x86-64: null
+  openbsd:
+    x86: null
+    x86-64: null
+  darwin:
+    x86: null
+    x86-64: null
+
+tags:
+  latest:
+    src: https://github.com/hacdias/filemanager/releases/latest
+    regex: '(?<=tag/v).*(?=" )'
+
+config:
+  port:
+    path: [port]
+  host:
+    path: [address]
+
+exec:
+  start: bin/filemanager -c etc/config.yml
+
+tasks:
+  build:
+  # Download the archive
+  - mkdir_p bin srv/files
+  - getfile https://github.com/hacdias/filemanager/releases/download/v${VERSION}/${KERNEL}-${ARCH_ALIAS}-filemanager.tar.gz
+  - untar_gz ${KERNEL}-${ARCH_ALIAS}-filemanager.tar.gz .
+  - chmod filemanager 750
+  - mv filemanager bin/filemanager
+  - rm ${KERNEL}-${ARCH_ALIAS}-filemanager.tar.gz LICENSE.md README.md

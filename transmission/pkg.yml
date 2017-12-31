@@ -1,0 +1,49 @@
+package: transmission
+name: Transmission
+type: app
+category: [torrent]
+license: (GPL-2.0 OR GPL-3.0)
+url: https://www.transmissionbt.com/
+description: A cross-platform BitTorrent client that is open source and designed for easy powerful use
+infos: "User Name: transmission - Password: transmission"
+
+version:
+  cmd: bin/transmission-cli -V
+  regex: (?<=transmission-cli ).*(?= )
+
+arch:
+  self:
+    src: https://bitbucket.org/dfabric/packages/downloads/SHA512SUMS
+  linux:
+    arm64: (?<=transmission-static_).*(?=_linux_arm64)
+    armhf: (?<=transmission-static_).*(?=_linux_armhf)
+    x86-64: (?<=transmission-static_).*(?=_linux_x86-64)
+
+tags:
+  latest:
+    src: https://bitbucket.org/dfabric/packages/downloads/SHA512SUMS
+    regex: (?<=transmission-static_).*(?=_linux_x86-64)
+
+config:
+  host:
+    path: rpc-bind-address
+  port:
+    path: rpc-port
+
+# TRANSMISSION_WEB_HOME=share/transmission/web/
+exec:
+  start: bin/transmission-daemon -g srv -f --log-error
+  reload: HUP
+
+tasks:
+  build:
+  - getfile https://bitbucket.org/dfabric/packages/downloads/transmission-static_${VERSION}_${KERNEL}_${ARCH}.tar.xz
+  - untar_xz transmission-static_${VERSION}_${KERNEL}_${ARCH}.tar.xz .
+  - mv transmission-static_${VERSION}_${KERNEL}_${ARCH}/bin transmission-static_${VERSION}_${KERNEL}_${ARCH}/share .
+  - glob rm_r transmission-static_${VERSION}_${KERNEL}_${ARCH}*
+  - mkdir_p srv/completed srv/progress srv/watched
+  - symlink ../etc/config.json srv/settings.json
+  add:
+  - json.set etc/config.json download-dir "${PKGDIR}srv/completed"
+  - json.set etc/config.json incomplete-dir "${PKGDIR}srv/progress"
+  - json.set etc/config.json watch-dir] "${PKGDIR}srv/watched"
