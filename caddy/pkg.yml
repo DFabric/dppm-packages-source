@@ -1,0 +1,73 @@
+package: caddy
+name: Caddy
+url: https://caddyserver.com
+type: app
+category: [ http, reverse-proxy ]
+docs: https://caddyserver.com/docs
+license: Apache-2.0
+description: Fast, cross-platform HTTP/2 web server with automatic HTTPS
+infos: Include auto SSL/TLS certificates with Let's Encrypt
+
+version:
+  cmd: bin/caddy -version
+  regex: (?<=Caddy )
+
+arch:
+  self:
+    src: https://github.com/mholt/caddy
+    regex: '(?<=data-name="v)[0-9.]+(?=")'
+  alias:
+    x86: 386
+    x86-64: amd64
+  linux:
+    armv5: null
+    armv6: null
+    armhf: null
+    mips: null
+    mips64: null
+    mips64le: null
+    ppc64: null
+    ppc64le: null
+    x86: null
+    x86-64: null
+  freebsd:
+    armv6: null
+    armhf: null
+    x86: null
+    x86-64: null
+  openbsd:
+    armv6: null
+    armhf: null
+    x86: null
+    x86-64: null
+  dragonflybsd:
+    x86-64: null
+  solaris:
+    x86-64: null
+
+tags:
+  latest:
+    src: https://github.com/mholt/caddy/releases/latest
+    regex: (?<=tag/v).*(?=" )
+
+exec:
+  start: bin/caddy -log stdout -agree=true -conf=etc/Caddyfile -root=tmp
+  reload: USR1
+  check: bin/caddy validate -log stdout -conf=etc/Caddyfile
+
+tasks:
+  build:
+  - mkdir_p tmp bin etc/cert
+  - getfile https://caddyserver.com/download/${KERNEL}/${ARCH_ALIAS} tmp/caddy.tar.gz
+  - untar_gz tmp/caddy.tar.gz tmp
+  - mv tmp/caddy bin/caddy
+  - glob rm_r tmp/*
+
+  # Set permissions
+  - chmod etc/Caddyfile 440
+  - chmod etc/cert 770
+
+  add:
+  - if USER = root:
+    # Give the caddy binary the ability to bind to privileged ports (e.g. 80, 443) as a non-root user
+    - /bin/setcap cap_net_bind_service=+ep bin/caddy
