@@ -5,7 +5,7 @@ category: [torrent]
 license: (GPL-2.0 OR GPL-3.0)
 url: https://www.transmissionbt.com/
 description: A cross-platform BitTorrent client that is open source and designed for easy powerful use
-infos: "User Name: transmission - Password: transmission"
+info: "User Name: transmission - Password: transmission"
 
 version:
   cmd: bin/transmission-cli -V

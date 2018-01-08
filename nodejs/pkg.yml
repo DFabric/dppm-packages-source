@@ -5,7 +5,7 @@ type: lib
 category: [javascript, nodejs]
 license: BSD
 description: Node.js® is a JavaScript runtime built on Chrome's V8 JavaScript engine
-infos: npm is also included
+info: npm is also included
 
 version:
   src: bin/node -v

@@ -5,7 +5,7 @@ category: [go]
 url: https://gitea.io/
 license: MIT
 description: Git with a cup of tea - A painless self-hosted Git service
-info: When accessed for the fist time, keeping the default values is recommended on the web installer
+information: When accessed for the fist time, keeping the default values is recommended on the web installer
 
 deps:
   git: ">=1.7.1"

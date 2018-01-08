@@ -6,7 +6,7 @@ category: [ http, reverse-proxy ]
 docs: https://caddyserver.com/docs
 license: Apache-2.0
 description: Fast, cross-platform HTTP/2 web server with automatic HTTPS
-infos: Include auto SSL/TLS certificates with Let's Encrypt
+info: Include auto SSL/TLS certificates with Let's Encrypt
 
 version:
   cmd: bin/caddy -version

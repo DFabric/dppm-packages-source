@@ -5,7 +5,7 @@ category: [go]
 url: https://gitea.io/
 license: Apache-2.0
 description: Web File Manager which can be used as a middleware or standalone app
-infos: File Manager
+info: File Manager
 
 optdeps:
 - git: ">=1.7.1"
