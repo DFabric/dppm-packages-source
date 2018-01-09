@@ -1,0 +1,26 @@
+package: php
+name: PHP
+url: https://secure.php.net/
+type: lib
+category: [php]
+docs: https://secure.php.net/docs.php
+license:  PHP-3.01
+description: PHP is a popular general-purpose scripting language that is especially suited to web development.
+info: npm is also included
+
+version:
+  src: bin/php
+  regex: (?<=PHP ).*(?= \(cli\))
+
+arch:
+  self:
+    src: https://bitbucket.org/dfabric/packages/downloads/SHA512SUMS
+  linux:
+    arm64: (?<=php-static_).*(?=_linux_arm64)
+    armhf: (?<=php-static_).*(?=_linux_armhf)
+    x86-64: (?<=php-static_).*(?=_linux_x86-64)
+
+tags:
+  latest:
+    src: https://bitbucket.org/dfabric/packages/downloads/SHA512SUMS
+    regex: (?<=php-static_).*(?=_linux_arm64)
