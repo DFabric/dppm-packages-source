@@ -1,9 +1,10 @@
 package: go-filemanager
 name: Go-filemanager
 type: app
-category: [go]
-url: https://gitea.io/
+keywords: [go]
 license: Apache-2.0
+url: https://hacdias.github.io/filemanager/
+docs: https://hacdias.github.io/filemanager/quick-start/
 description: Web File Manager which can be used as a middleware or standalone app
 info: File Manager
 

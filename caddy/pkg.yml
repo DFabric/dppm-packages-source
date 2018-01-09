@@ -1,10 +1,10 @@
 package: caddy
 name: Caddy
-url: https://caddyserver.com
 type: app
-category: [ http, reverse-proxy ]
-docs: https://caddyserver.com/docs
+keywords: [http, reverse-proxy]
 license: Apache-2.0
+url: https://caddyserver.com
+docs: https://caddyserver.com/docs
 description: Fast, cross-platform HTTP/2 web server with automatic HTTPS
 info: Include auto SSL/TLS certificates with Let's Encrypt
 

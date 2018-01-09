@@ -3,7 +3,8 @@ name: Transmission
 type: app
 category: [torrent]
 license: (GPL-2.0 OR GPL-3.0)
-url: https://www.transmissionbt.com/
+url: https://transmissionbt.com/
+docs: https://github.com/transmission/transmission/wiki
 description: A cross-platform BitTorrent client that is open source and designed for easy powerful use
 info: "User Name: transmission - Password: transmission"
 

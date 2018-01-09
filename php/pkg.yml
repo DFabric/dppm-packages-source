@@ -1,10 +1,10 @@
 package: php
 name: PHP
-url: https://secure.php.net/
 type: lib
-category: [php]
-docs: https://secure.php.net/docs.php
+keywords: [php]
 license:  PHP-3.01
+url: https://secure.php.net/
+docs: https://secure.php.net/docs.php
 description: PHP is a popular general-purpose scripting language that is especially suited to web development.
 info: npm is also included
 

@@ -1,11 +1,12 @@
 package: gitea
 name: Gitea
 type: app
-category: [go]
-url: https://gitea.io/
+keywords: [go]
 license: MIT
+url: https://gitea.io/
+docs: https://docs.gitea.io/
 description: Git with a cup of tea - A painless self-hosted Git service
-information: When accessed for the fist time, keeping the default values is recommended on the web installer
+info: When accessed for the fist time, keeping the default values is recommended on the web installer
 
 deps:
   git: ">=1.7.1"
