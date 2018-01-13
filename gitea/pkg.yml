@@ -39,24 +39,15 @@ tags:
 
 # https://henriquedias.com/filemanager/configuration/
 config:
-  url:
-    path: server.ROOT_URL
-  domain:
-    path: server.DOMAIN
-  host:
-    path: server.HTTP_ADDR
-  port:
-    path: server.HTTP_PORT
-  database_type:
-    path: database.DB_TYPE
-  database_host:
-    path: database.DB_HOST
-  database_user:
-    path: database.DB_USER
-  database_password:
-    path: database.DB_PASSWD
-  database_name:
-    path: database.DB_NAME
+  url: server.ROOT_URL
+  domain: server.DOMAIN
+  host: server.HTTP_ADDR
+  port: server.HTTP_PORT
+  database_type: database.DB_TYPE
+  database_host: database.DB_HOST
+  database_user: database.DB_USER
+  database_password: database.DB_PASSWD
+  database_name: database.DB_NAME
 
 exec:
   start: bin/gitea web -c ../../etc/config.ini

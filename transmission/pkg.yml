@@ -26,10 +26,8 @@ tags:
     regex: (?<=transmission-static_).*(?=_linux_x86-64)
 
 config:
-  host:
-    path: rpc-bind-address
-  port:
-    path: rpc-port
+  host: rpc-bind-address
+  port: rpc-port
 
 # TRANSMISSION_WEB_HOME=share/transmission/web/
 exec:

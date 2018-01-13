@@ -26,22 +26,14 @@ tags:
     regex: (?<=tag/).*(?=" )
 
 config:
-  url:
-    path: url
-  host:
-    path: server.host
-  port:
-    path: server.port
-  database_type:
-    path: database.client
-  database_host:
-    path: database.connection.host
-  database_user:
-    path: database.connection.user
-  database_password:
-    path: database.connection.password
-  database_name:
-    path: database.connection.database
+  url: url
+  host: server.host
+  port: server.port
+  database_type: database.client
+  database_host: database.connection.host
+  database_user: database.connection.user
+  database_password: database.connection.password
+  database_name: database.connection.database
 
 vars:
 - lib/node_modules/ghost/package.json
