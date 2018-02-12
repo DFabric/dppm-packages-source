@@ -62,5 +62,5 @@ tasks:
   - if DATABASE_TYPE = sqlite3 || DATABASE_TYPE = mysql || DATABASE_TYPE = postgres || DATABASE_TYPE = mssql:
     # Good
   - else:
-    - "puts unsupported database: ${DATABASE_TYPE}"
+    - "echo unsupported database: ${DATABASE_TYPE}"
     - exit 1
