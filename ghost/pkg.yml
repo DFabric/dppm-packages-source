@@ -29,7 +29,7 @@ config:
   url: url
   host: server.host
   port: server.port
-  database_type: database.client
+  database_type: database.client # sqlite3/mysql
   database_host: database.connection.host
   database_user: database.connection.user
   database_password: database.connection.password
@@ -61,17 +61,10 @@ tasks:
   - symlink ../lib/node_modules/ghost/core/server/config/env/config.production.json etc/config.json
 
   add:
-  - cd lib/node_modules/ghost
-  - config = "core/server/config/env/config.production.json"
-  - if DATABASE_TYPE = mysql || DATABASE_TYPE = sqlite3:
-    - set ${config} database.client "${DATABASE_TYPE}"
-  - else:
-    - "puts unsupported database: ${DATABASE_TYPE}"
-    - exit 1
   # Init or migrate database if needed
   - if NODE_ENV?:
     - node_env = "${NODE_ENV}"
   - else:
     - node_env = "production"
-  - node node_modules/knex-migrator/bin/knex-migrator init NODE_ENV=${node_env}
-  - node node_modules/knex-migrator/bin/knex-migrator migrate NODE_ENV=${node_env}
+  - node lib/node_modules/ghost/node_modules/knex-migrator/bin/knex-migrator init NODE_ENV=${node_env}
+  - node lib/node_modules/ghost/node_modules/knex-migrator/bin/knex-migrator migrate NODE_ENV=${node_env}
