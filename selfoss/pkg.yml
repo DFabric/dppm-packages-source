@@ -1,0 +1,49 @@
+package: selfoss
+name: selfoss
+type: app
+keywords: [php, php-fpm]
+license: GPL-3.0
+url: https://selfoss.aditu.de/
+docs: https://selfoss.aditu.de/#documentation
+description: The new multipurpose rss reader, live stream, mashup, aggregation web application
+info: do more that rss
+
+deps:
+  php: ">=5.3.0"
+
+version:
+  src: lib/selfoss/common.php
+  regex: (?<='version', ').*(?=')
+
+arch:
+  self:
+    src: https://github.com/SSilence/selfoss
+    regex: '(?<=data-name=")[0-9.]+(?=")'
+
+tags:
+  latest:
+    src: https://github.com/SSilence/selfoss/releases/latest
+    regex: '(?<=tag/).*(?=" )'
+
+config:
+  url: globals.base_url
+  database_port: globals.db_port
+  database_type: globals.db_type # sqlite/mysql/pgsql
+  database_port: globals.db_port
+  database_host: globals.db_host
+  database_user: globals.db_user
+  database_password: globals.db_password
+  database_name: globals.db_name
+
+tasks:
+  build:
+  - getfile https://github.com/SSilence/selfoss/releases/download/${VERSION}/selfoss-${VERSION}.zip
+  - unzip selfoss-${VERSION}.zip lib/selfoss
+  - echo selfoss-${VERSION}.zip
+  - rm selfoss-${VERSION}.zip
+  - symlink lib/selfoss/data srv
+  # Configuration normalization
+  - cp lib/selfoss/defaults.ini lib/selfoss/config.ini
+  - symlink ../lib/selfoss/config.ini etc/config.ini
+  - set etc/config.ini globals.db_file data/sqlite/selfoss.db
+  - set etc/config.ini globals.logger_destination file:log/default.log
