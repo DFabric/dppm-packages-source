@@ -2,14 +2,14 @@ package: php
 name: PHP
 type: lib
 keywords: [php]
-license:  PHP-3.01
+license: PHP-3.01
 url: https://secure.php.net/
 docs: https://secure.php.net/docs.php
 description: PHP is a popular general-purpose scripting language that is especially suited to web development.
-info: npm is also included
+info: pear is also included
 
 version:
-  src: bin/php
+  src: bin/php -v
   regex: (?<=PHP ).*(?= \(cli\))
 
 arch:
@@ -24,3 +24,19 @@ tags:
   latest:
     src: https://bitbucket.org/dfabric/packages/downloads/SHA512SUMS
     regex: (?<=php-static_).*(?=_linux_arm64)
+
+exec:
+  start: lib/php/sbin/php-fpm --nodaemonize --allow-to-run-as-root --fpm-config etc/php-fpm.conf --prefix .
+  reload: USR2
+  test: lib/php/sbin/php-fpm --test --allow-to-run-as-root --fpm-config etc/php-fpm.conf --prefix .
+
+# Used in the php application, not in the library itself
+tasks:
+  add:
+  - ini.del etc/php-fpm.conf global.include
+  - ini.set etc/php-fpm.conf global.pid /run/${NAME}.pid
+  - ini.set etc/php-fpm.conf global.include etc/php-fpm.d/*.conf
+  - ini.set etc/php-fpm.d/www.conf www.listen\.allowed_clients [::1]
+  - ini.set etc/php-fpm.d/www.conf www.group ${GROUP}
+  - ini.set etc/php-fpm.d/www.conf www.user ${USER}
+  - ini.set etc/php-fpm.d/www.conf www.listen /run/${NAME}.sock
