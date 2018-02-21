@@ -10,7 +10,7 @@ info: Include auto SSL/TLS certificates with Let's Encrypt
 
 version:
   cmd: bin/caddy -version
-  regex: (?<=Caddy )
+  regex: (?<=Caddy )[0-9.]+
 
 arch:
   self:
