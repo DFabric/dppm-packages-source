@@ -1,10 +1,10 @@
-package: go-filemanager
-name: Go-filemanager
+package: filebrowser
+name: filebrowser
 type: app
 keywords: [go]
 license: Apache-2.0
-url: https://hacdias.github.io/filemanager/
-docs: https://hacdias.github.io/filemanager/quick-start/
+url: https://filebrowser.github.io/
+docs: https://filebrowser.github.io/quick-start/
 description: Web File Manager which can be used as a middleware or standalone app
 info: File Manager
 
@@ -12,12 +12,12 @@ optdeps:
 - git: ">=1.7.1"
 
 version:
-  cmd: bin/filemanager -v
-  regex: (?<=filemanager version ).*
+  cmd: bin/filebrowser -v
+  regex: (?<=filebrowser version ).*
 
 arch:
   self:
-    src: https://github.com/hacdias/filemanager
+    src: https://github.com/filebrowser/filebrowser
     regex: '(?<=data-name="v)[0-9.]+(?=")'
   alias:
     x86-64: amd64
@@ -44,7 +44,7 @@ arch:
 
 tags:
   latest:
-    src: https://github.com/hacdias/filemanager/releases/latest
+    src: https://github.com/filebrowser/filebrowser/releases/latest
     regex: '(?<=tag/v).*(?=" )'
 
 config:
@@ -52,14 +52,14 @@ config:
   host: address
 
 exec:
-  start: bin/filemanager -c etc/config.yml
+  start: bin/filebrowser -c etc/config.yml
 
 tasks:
   build:
   # Download the archive
   - mkdir_p bin srv/files
-  - getfile https://github.com/hacdias/filemanager/releases/download/v${VERSION}/${KERNEL}-${ARCH_ALIAS}-filemanager.tar.gz
-  - untar_gz ${KERNEL}-${ARCH_ALIAS}-filemanager.tar.gz .
-  - chmod filemanager 750
-  - mv filemanager bin/filemanager
-  - rm ${KERNEL}-${ARCH_ALIAS}-filemanager.tar.gz LICENSE.md README.md
+  - getfile https://github.com/filebrowser/filebrowser/releases/download/v${VERSION}/${KERNEL}-${ARCH_ALIAS}-filebrowser.tar.gz
+  - untar_gz ${KERNEL}-${ARCH_ALIAS}-filebrowser.tar.gz .
+  - chmod filebrowser 750
+  - mv filebrowser bin/filebrowser
+  - rm ${KERNEL}-${ARCH_ALIAS}-filebrowser.tar.gz LICENSE.md README.md
