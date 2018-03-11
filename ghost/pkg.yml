@@ -54,7 +54,7 @@ tasks:
 
   # set sqlite3 for the default database
   - set ${config} database.client "sqlite3"
-  - set ${config} database.connection.filename "content/data/ghost.db"
+  - set ${config} database.connection.filename "content/sqlite3.db"
 
   # Symlink to standard locations
   - symlink lib/node_modules/ghost/content srv

@@ -45,5 +45,5 @@ tasks:
   # Configuration normalization
   - cp lib/selfoss/defaults.ini lib/selfoss/config.ini
   - symlink ../lib/selfoss/config.ini etc/config.ini
-  - set etc/config.ini globals.db_file data/sqlite/selfoss.db
+  - set etc/config.ini globals.db_file data/sqlite3.db
   - set etc/config.ini globals.logger_destination file:log/default.log

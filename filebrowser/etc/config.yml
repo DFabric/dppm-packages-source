@@ -3,7 +3,7 @@ noAuth: false
 address: "[::1]"
 reCaptchaKey: ''
 reCaptchaSecret: ''
-database: srv/filemanager.db
+database: srv/sqlite3.db
 log: stdout
 plugin: ''
 scope: srv/files
