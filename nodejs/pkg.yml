@@ -2,7 +2,7 @@ package: nodejs
 name: Node.js
 type: lib
 keywords: [javascript, nodejs]
-license: BSD
+license: MIT
 url: https://nodejs.org/
 docs: https://nodejs.org/docs/
 description: Node.js® is a JavaScript runtime built on Chrome's V8 JavaScript engine
