@@ -23,7 +23,7 @@ arch:
 tags:
   latest:
     src: https://github.com/SSilence/selfoss/releases/latest
-    regex: '(?<=tag/).*(?=" )'
+    regex: '(?<=tag/).*(?=">)'
 
 config:
   url: globals.base_url

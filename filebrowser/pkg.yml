@@ -45,7 +45,7 @@ arch:
 tags:
   latest:
     src: https://github.com/filebrowser/filebrowser/releases/latest
-    regex: '(?<=tag/v).*(?=" )'
+    regex: '(?<=tag/v).*(?=">)'
 
 config:
   port: port

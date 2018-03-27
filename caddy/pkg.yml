@@ -48,7 +48,7 @@ arch:
 tags:
   latest:
     src: https://github.com/mholt/caddy/releases/latest
-    regex: (?<=tag/v).*(?=" )
+    regex: (?<=tag/v).*(?=">)
 
 exec:
   start: bin/caddy -log stdout -agree=true -conf=etc/Caddyfile -root=tmp

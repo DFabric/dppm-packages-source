@@ -35,7 +35,7 @@ arch:
 tags:
   latest:
     src: https://github.com/go-gitea/gitea/releases/latest
-    regex: (?<=tag/v).*(?=" )
+    regex: (?<=tag/v).*(?=">)
 
 # https://henriquedias.com/filemanager/configuration/
 config:
