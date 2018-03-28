@@ -44,7 +44,8 @@ exec:
 
 tasks:
   build:
-  - npm install ghost -g --unsafe-perm --prefix .
+  - write etc/npmrc "scripts-prepend-node-path=true"
+  - node lib/nodejs/lib/node_modules/npm --scripts-prepend-node-path lib/nodejs/bin install ghost -g --unsafe-perm --prefix .
   # Set defaults to the production config
   - config = "lib/node_modules/ghost/core/server/config/env/config.production.json"
   - set ${config} url "http://localhost:2368"
