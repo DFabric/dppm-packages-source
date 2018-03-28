@@ -58,7 +58,7 @@ exec:
 tasks:
   build:
   - mkdir_p tmp bin etc/cert
-  - getfile https://caddyserver.com/download/${KERNEL}/${ARCH_ALIAS} tmp/caddy.tar.gz
+  - getfile https://caddyserver.com/download/${KERNEL}/${ARCH_ALIAS}?license=personal tmp/caddy.tar.gz
   - untar_gz tmp/caddy.tar.gz tmp
   - mv tmp/caddy bin/caddy
   - glob rm_r tmp/*
