@@ -1,7 +1,7 @@
 package: filebrowser
 name: filebrowser
 type: app
-keywords: [go]
+keywords: [go, git]
 license: Apache-2.0
 url: https://filebrowser.github.io/
 docs: https://filebrowser.github.io/quick-start/
