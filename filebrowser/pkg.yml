@@ -62,4 +62,4 @@ tasks:
   - untar_gz ${KERNEL}-${ARCH_ALIAS}-filebrowser.tar.gz .
   - chmod filebrowser 750
   - mv filebrowser bin/filebrowser
-  - rm ${KERNEL}-${ARCH_ALIAS}-filebrowser.tar.gz LICENSE.md README.md
+  - rm ${KERNEL}-${ARCH_ALIAS}-filebrowser.tar.gz LICENSE README.md
