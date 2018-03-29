@@ -67,5 +67,7 @@ tasks:
     - node_env = "${NODE_ENV}"
   - else:
     - node_env = "production"
-  - node lib/node_modules/ghost/node_modules/knex-migrator/bin/knex-migrator init NODE_ENV=${node_env}
-  - node lib/node_modules/ghost/node_modules/knex-migrator/bin/knex-migrator migrate NODE_ENV=${node_env}
+
+  - cd lib/node_modules/ghost
+  - node node_modules/knex-migrator/bin/knex-migrator-init NODE_ENV=${node_env}
+  - node node_modules/knex-migrator/bin/knex-migrator-migrate NODE_ENV=${node_env}
