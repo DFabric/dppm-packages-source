@@ -1,4 +1,4 @@
 supervise_daemon_args="
-	--env 'TRANSMISSION_WEB_HOME=share/transmission/web'
+	--env 'TRANSMISSION_WEB_HOME="share/transmission/web"'
 "
 

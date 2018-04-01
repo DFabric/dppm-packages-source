@@ -8,7 +8,7 @@ Wants=network-online.target systemd-networkd-wait-online.service
 Restart=on-abnormal
 
 ; Letsencrypt-issued certificates will be written to this directory.
-Environment=CADDYPATH=etc/cert
+Environment=CADDYPATH="etc/cert"
 
 ; Use graceful shutdown with a reasonable timeout
 KillMode=mixed

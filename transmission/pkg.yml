@@ -45,4 +45,4 @@ tasks:
   add:
   - json.set etc/config.json download-dir "${PKGDIR}srv/completed"
   - json.set etc/config.json incomplete-dir "${PKGDIR}srv/progress"
-  - json.set etc/config.json watch-dir] "${PKGDIR}srv/watched"
+  - json.set etc/config.json watch-dir "${PKGDIR}srv/watched"
