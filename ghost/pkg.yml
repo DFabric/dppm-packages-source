@@ -46,28 +46,14 @@ tasks:
   build:
   - write etc/npmrc "scripts-prepend-node-path=true"
   - node lib/nodejs/lib/node_modules/npm --scripts-prepend-node-path lib/nodejs/bin install ghost -g --unsafe-perm --prefix .
-  # Set defaults to the production config
-  - config = "lib/node_modules/ghost/core/server/config/env/config.production.json"
-  - set ${config} url "http://localhost:2368"
-  - set ${config} server {}
-  - set ${config} server.host "[::1]"
-  - set ${config} server.port 2368
-
-  # set sqlite3 for the default database
-  - set ${config} database.client "sqlite3"
-  - set ${config} database.connection.filename "content/sqlite3.db"
 
   # Symlink to standard locations
   - symlink lib/node_modules/ghost/content srv
-  - symlink ../lib/node_modules/ghost/core/server/config/env/config.production.json etc/config.json
+  - rm lib/node_modules/ghost/core/server/config/env/config.production.json
+  - symlink etc/config.json lib/node_modules/ghost/core/server/config/env/config.production.json
 
   add:
   # Init or migrate database if needed
-  - if NODE_ENV?:
-    - node_env = "${NODE_ENV}"
-  - else:
-    - node_env = "production"
-
   - cd lib/node_modules/ghost
-  - node node_modules/knex-migrator/bin/knex-migrator-init NODE_ENV=${node_env}
-  - node node_modules/knex-migrator/bin/knex-migrator-migrate NODE_ENV=${node_env}
+  - node node_modules/knex-migrator/bin/knex-migrator-init NODE_ENV=production
+  - node node_modules/knex-migrator/bin/knex-migrator-migrate NODE_ENV=production

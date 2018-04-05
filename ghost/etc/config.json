@@ -1,0 +1,20 @@
+{
+  "url": "http://localhost:2368",
+  "database": {
+    "client": "sqlite3",
+    "connection": {
+      "filename": "content/sqlite3.db"
+    },
+  },
+  "server": {
+    "host": "[::1]",
+    "port": 2368
+  },
+  "paths": {
+    "contentPath": "content/"
+  },
+  "logging": {
+    "level": "info",
+    "transports": ["stdout"]
+  }
+}
