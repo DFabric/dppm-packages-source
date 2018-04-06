@@ -9,10 +9,6 @@ description: Ruby is a dynamic, open source programming language with a focus on
 info: gem doesn't work for now
 
 version:
-  src: bin/ruby -v
-  regex: (?<=ruby )[0-9.]+
-
-arch:
   self:
     src: https://bitbucket.org/dfabric/packages/downloads/SHA512SUMS
   linux:

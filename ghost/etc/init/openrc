@@ -1,0 +1,3 @@
+supervise_daemon_args="
+	--env 'NODE_ENV="production"'
+"

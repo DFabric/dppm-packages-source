@@ -12,10 +12,6 @@ deps:
   nodejs: ^6.9.0 || ^8.9.0
 
 version:
-  src: lib/node_modules/ghost/package.json
-  path: version
-
-arch:
   self:
     src: https://github.com/TryGhost/Ghost
     regex: '(?<=data-name=")[0-9.]+(?=")'
@@ -36,24 +32,26 @@ config:
   database_name: database.connection.database
 
 vars:
-- lib/node_modules/ghost/package.json
-- core/server/config/defaults.json
+- lib/ghost/package.json
+- lib/ghost/core/server/config/defaults.json
 
 exec:
-  start: lib/nodejs/bin/node lib/node_modules/ghost/index --production
+  start: lib/nodejs/bin/node lib/ghost/index.js
 
 tasks:
   build:
   - write etc/npmrc "scripts-prepend-node-path=true"
   - node lib/nodejs/lib/node_modules/npm --scripts-prepend-node-path lib/nodejs/bin install ghost -g --unsafe-perm --prefix .
+  - mv lib/node_modules/ghost lib/ghost
+  - rm_r lib/node_modules etc/npmrc
 
   # Symlink to standard locations
-  - symlink lib/node_modules/ghost/content srv
-  - rm lib/node_modules/ghost/core/server/config/env/config.production.json
-  - symlink etc/config.json lib/node_modules/ghost/core/server/config/env/config.production.json
+  - symlink lib/ghost/content srv
+  - rm lib/ghost/core/server/config/env/config.production.json
+  - symlink ../../../../../../etc/config.json lib/ghost/core/server/config/env/config.production.json
 
   add:
   # Init or migrate database if needed
-  - cd lib/node_modules/ghost
+  - cd lib/ghost
   - node node_modules/knex-migrator/bin/knex-migrator-init NODE_ENV=production
   - node node_modules/knex-migrator/bin/knex-migrator-migrate NODE_ENV=production

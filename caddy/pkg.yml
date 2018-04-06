@@ -9,10 +9,6 @@ description: Fast, cross-platform HTTP/2 web server with automatic HTTPS
 info: Include auto SSL/TLS certificates with Let's Encrypt
 
 version:
-  cmd: bin/caddy -version
-  regex: (?<=Caddy )[0-9.]+
-
-arch:
   self:
     src: https://github.com/mholt/caddy
     regex: '(?<=data-name="v)[0-9.]+(?=")'

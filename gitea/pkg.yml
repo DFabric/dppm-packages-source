@@ -12,10 +12,6 @@ deps:
   git: ">=1.7.1"
 
 version:
-  cmd: bin/gitea -v
-  regex: (?<=Gitea version ).*(?= built with.*)
-
-arch:
   self:
     src: https://dl.gitea.io/gitea/?sort=name&order=desc
     regex: (?<=\./)[0-9].*(?=/)
@@ -43,7 +39,7 @@ config:
   domain: server.DOMAIN
   host: server.HTTP_ADDR
   port: server.HTTP_PORT
-  database_type: database.DB_TYPE
+  database_type: database.DB_TYPE # sqlite3/mysql/postgres/mssql
   database_host: database.DB_HOST
   database_user: database.DB_USER
   database_password: database.DB_PASSWD
@@ -58,9 +54,3 @@ tasks:
   - mkdir bin tmp
   - getfile https://dl.gitea.io/gitea/${VERSION}/gitea-${VERSION}-${KERNEL}-${ARCH_ALIAS} bin/gitea
   - chmod bin/gitea 750
-  add:
-  - if DATABASE_TYPE = sqlite3 || DATABASE_TYPE = mysql || DATABASE_TYPE = postgres || DATABASE_TYPE = mssql:
-    # Good
-  - else:
-    - "echo unsupported database: ${DATABASE_TYPE}"
-    - exit 1

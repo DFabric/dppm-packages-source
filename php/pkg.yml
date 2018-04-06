@@ -9,10 +9,6 @@ description: PHP is a popular general-purpose scripting language that is especia
 info: pear is also included
 
 version:
-  src: bin/php -v
-  regex: (?<=PHP ).*(?= \(cli\))
-
-arch:
   self:
     src: https://bitbucket.org/dfabric/packages/downloads/SHA512SUMS
   linux:

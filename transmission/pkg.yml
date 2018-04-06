@@ -9,10 +9,6 @@ description: A cross-platform BitTorrent client that is open source and designed
 info: "User Name: transmission - Password: transmission"
 
 version:
-  cmd: bin/transmission-cli -V
-  regex: (?<=transmission-cli ).*(?= )
-
-arch:
   self:
     src: https://bitbucket.org/dfabric/packages/downloads/SHA512SUMS
   linux:

@@ -12,10 +12,6 @@ deps:
   php: ">=5.3.0"
 
 version:
-  src: lib/selfoss/common.php
-  regex: (?<='version', ').*(?=')
-
-arch:
   self:
     src: https://github.com/SSilence/selfoss
     regex: '(?<=data-name=")[0-9.]+(?=")'

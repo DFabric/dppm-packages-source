@@ -8,7 +8,7 @@ docs: https://git-scm.com/doc
 description: The Git distributed version control system
 info: Statically linked Git
 
-arch:
+version:
   self:
     src: https://bitbucket.org/dfabric/packages/downloads/SHA512SUMS
   linux:

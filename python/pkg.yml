@@ -9,10 +9,6 @@ description: Python is a programming language that lets you work quickly and int
 info: pip isn't included for now
 
 version:
-  src: bin/python -V
-  regex: (?<=Python ).*
-
-arch:
   self:
     src: https://bitbucket.org/dfabric/packages/downloads/SHA512SUMS
   linux:
