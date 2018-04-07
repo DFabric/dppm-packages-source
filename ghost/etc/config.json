@@ -3,15 +3,15 @@
   "database": {
     "client": "sqlite3",
     "connection": {
-      "filename": "content/sqlite3.db"
+      "filename": "../../srv/sqlite3.db"
     }
   },
   "server": {
-    "host": "[::1]",
+    "host": "::1",
     "port": 2368
   },
   "paths": {
-    "contentPath": "content/"
+    "contentPath": "../../srv/"
   },
   "logging": {
     "level": "info",

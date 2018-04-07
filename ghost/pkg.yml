@@ -40,18 +40,19 @@ exec:
 
 tasks:
   build:
-  - write etc/npmrc "scripts-prepend-node-path=true"
+  - write etc/npmrc "scripts-prepend-node-path = true"
   - node lib/nodejs/lib/node_modules/npm --scripts-prepend-node-path lib/nodejs/bin install ghost -g --unsafe-perm --prefix .
   - mv lib/node_modules/ghost lib/ghost
+  - mv lib/ghost/content srv
   - rm_r lib/node_modules etc/npmrc
 
   # Symlink to standard locations
-  - symlink lib/ghost/content srv
   - rm lib/ghost/core/server/config/env/config.production.json
   - symlink ../../../../../../etc/config.json lib/ghost/core/server/config/env/config.production.json
+  - append lib/ghost/node_modules/knex-migrator/logging.js "; process.env.NODE_ENV = "production""
 
   add:
   # Init or migrate database if needed
   - cd lib/ghost
-  - node node_modules/knex-migrator/bin/knex-migrator-init NODE_ENV=production
-  - node node_modules/knex-migrator/bin/knex-migrator-migrate NODE_ENV=production
+  - node node_modules/knex-migrator/bin/knex-migrator-init
+  - node node_modules/knex-migrator/bin/knex-migrator-migrate
