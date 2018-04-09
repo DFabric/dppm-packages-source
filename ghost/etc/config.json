@@ -3,7 +3,7 @@
   "database": {
     "client": "sqlite3",
     "connection": {
-      "filename": "../../srv/sqlite3.db"
+      "filename": "../srv/sqlite3.db"
     }
   },
   "server": {
@@ -11,7 +11,7 @@
     "port": 2368
   },
   "paths": {
-    "contentPath": "../../srv/"
+    "contentPath": "../srv/"
   },
   "logging": {
     "level": "info",

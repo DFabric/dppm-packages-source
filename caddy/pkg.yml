@@ -47,16 +47,16 @@ tags:
     regex: (?<=tag/v).*(?=">)
 
 exec:
-  start: bin/caddy -log stdout -agree=true -conf=etc/Caddyfile -root=tmp
+  start: app/caddy -log stdout -agree=true -conf=etc/Caddyfile -root=tmp
   reload: USR1
-  check: bin/caddy validate -log stdout -conf=etc/Caddyfile
+  check: app/caddy validate -log stdout -conf=etc/Caddyfile
 
 tasks:
   build:
-  - mkdir_p tmp bin etc/cert
+  - mkdir_p tmp app etc/cert
   - getfile https://caddyserver.com/download/${KERNEL}/${ARCH_ALIAS}?license=personal tmp/caddy.tar.gz
   - untar_gz tmp/caddy.tar.gz tmp
-  - mv tmp/caddy bin/caddy
+  - mv tmp/caddy app/caddy
   - glob rm_r tmp/*
 
   # Set permissions
@@ -66,4 +66,4 @@ tasks:
   add:
   - if USER = root:
     # Give the caddy binary the ability to bind to privileged ports (e.g. 80, 443) as a non-root user
-    - /bin/setcap cap_net_bind_service=+ep bin/caddy
+    - /bin/setcap cap_net_bind_service=+ep app/caddy

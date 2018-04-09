@@ -32,27 +32,30 @@ config:
   database_name: database.connection.database
 
 vars:
-- lib/ghost/package.json
-- lib/ghost/core/server/config/defaults.json
+- app/package.json
+- app/core/server/config/defaults.json
 
 exec:
-  start: lib/nodejs/bin/node lib/ghost/index.js
+  start: lib/nodejs/bin/node app/index.js
 
 tasks:
   build:
   - write etc/npmrc "scripts-prepend-node-path = true"
-  - node lib/nodejs/lib/node_modules/npm --scripts-prepend-node-path lib/nodejs/bin install ghost -g --unsafe-perm --prefix .
-  - mv lib/node_modules/ghost lib/ghost
-  - mv lib/ghost/content srv
+  - node lib/nodejs/lib/node_modules/npm --scripts-prepend-node-path lib/nodejs/bin install ghost@${VERSION} -g --unsafe-perm --prefix .
+  - mv lib/node_modules/ghost app
+  - mv app/content srv
   - rm_r lib/node_modules etc/npmrc
 
   # Symlink to standard locations
-  - rm lib/ghost/core/server/config/env/config.production.json
-  - symlink ../../../../../../etc/config.json lib/ghost/core/server/config/env/config.production.json
-  - append lib/ghost/node_modules/knex-migrator/logging.js "; process.env.NODE_ENV = "production""
+  - rm app/core/server/config/env/config.production.json
+  - symlink ../../../../../etc/config.json app/core/server/config/env/config.production.json
+  - append app/node_modules/knex-migrator/logging.js "; process.env.NODE_ENV = "production""
+
+  # Initialize the database
+  - cd app
+  - node node_modules/knex-migrator/bin/knex-migrator-init
 
   add:
-  # Init or migrate database if needed
-  - cd lib/ghost
-  - node node_modules/knex-migrator/bin/knex-migrator-init
+  # migrate database if needed
+  - cd app
   - node node_modules/knex-migrator/bin/knex-migrator-migrate

@@ -46,11 +46,10 @@ config:
   database_name: database.DB_NAME
 
 exec:
-  start: bin/gitea web -c ../../etc/config.ini
+  start: app/gitea web -c ../../etc/config.ini
 
 tasks:
   build:
   # Download the archive
-  - mkdir bin tmp
-  - getfile https://dl.gitea.io/gitea/${VERSION}/gitea-${VERSION}-${KERNEL}-${ARCH_ALIAS} bin/gitea
-  - chmod bin/gitea 750
+  - mkdir app
+  - getfile https://dl.gitea.io/gitea/${VERSION}/gitea-${VERSION}-${KERNEL}-${ARCH_ALIAS} app/gitea

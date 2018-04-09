@@ -1,7 +1,7 @@
 package: transmission
 name: Transmission
 type: app
-category: [torrent]
+keywords: [torrent]
 license: (GPL-2.0 OR GPL-3.0)
 url: https://transmissionbt.com/
 docs: https://github.com/transmission/transmission/wiki
@@ -27,18 +27,18 @@ config:
 
 # TRANSMISSION_WEB_HOME=share/transmission/web/
 exec:
-  start: bin/transmission-daemon -g srv -f --log-error
+  start: app/bin/transmission-daemon -g srv -f --log-error
   reload: HUP
 
 tasks:
   build:
   - getfile https://bitbucket.org/dfabric/packages/downloads/transmission-static_${VERSION}_${KERNEL}_${ARCH}.tar.xz
   - untar_xz transmission-static_${VERSION}_${KERNEL}_${ARCH}.tar.xz .
-  - mv transmission-static_${VERSION}_${KERNEL}_${ARCH}/bin transmission-static_${VERSION}_${KERNEL}_${ARCH}/share .
-  - glob rm_r transmission-static_${VERSION}_${KERNEL}_${ARCH}*
+  - rm transmission-static_${VERSION}_${KERNEL}_${ARCH}.tar.xz
+  - mv transmission-static_${VERSION}_${KERNEL}_${ARCH} app
   - mkdir_p srv/completed srv/progress srv/watched
   - symlink ../etc/config.json srv/settings.json
   add:
-  - json.set etc/config.json download-dir "${PKGDIR}srv/completed"
-  - json.set etc/config.json incomplete-dir "${PKGDIR}srv/progress"
-  - json.set etc/config.json watch-dir "${PKGDIR}srv/watched"
+  - json.set etc/config.json download-dir "${PKGDIR}/srv/completed"
+  - json.set etc/config.json incomplete-dir "${PKGDIR}/srv/progress"
+  - json.set etc/config.json watch-dir "${PKGDIR}/srv/watched"
