@@ -46,7 +46,10 @@ config:
   database_name: database.DB_NAME
 
 exec:
-  start: app/gitea web -c ../../etc/config.ini
+  start: app/gitea web -c ../etc/config.ini
+
+env:
+  GITEA_WORK_DIR: .
 
 tasks:
   build:

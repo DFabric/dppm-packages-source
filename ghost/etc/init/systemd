@@ -1,9 +1,0 @@
-[Unit]
-After=network.target
-
-[Service]
-Type=simple
-Environment=NODE_ENV="production"
-
-[Install]
-WantedBy=multi-user.target

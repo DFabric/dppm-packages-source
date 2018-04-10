@@ -1,4 +1,0 @@
-supervise_daemon_args="
-	--env 'CADDYPATH="etc/cert"'
-"
-

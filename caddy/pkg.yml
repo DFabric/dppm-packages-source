@@ -51,6 +51,9 @@ exec:
   reload: USR1
   check: app/caddy validate -log stdout -conf=etc/Caddyfile
 
+env:
+  CADDYPATH: etc/cert
+
 tasks:
   build:
   - mkdir_p tmp app etc/cert

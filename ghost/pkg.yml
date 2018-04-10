@@ -38,6 +38,10 @@ vars:
 exec:
   start: lib/nodejs/bin/node app/index.js
 
+env:
+  NODE_ENV: production
+  paths__contentPath:
+
 tasks:
   build:
   - write etc/npmrc "scripts-prepend-node-path = true"
@@ -51,11 +55,8 @@ tasks:
   - symlink ../../../../../etc/config.json app/core/server/config/env/config.production.json
   - append app/node_modules/knex-migrator/logging.js "; process.env.NODE_ENV = "production""
 
-  # Initialize the database
+  add:
+  # Initialize/migrate database if needed
   - cd app
   - node node_modules/knex-migrator/bin/knex-migrator-init
-
-  add:
-  # migrate database if needed
-  - cd app
   - node node_modules/knex-migrator/bin/knex-migrator-migrate
