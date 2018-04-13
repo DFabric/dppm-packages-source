@@ -1,0 +1,72 @@
+package: etherpad
+name: Etherpad
+type: app
+keywords: [nodejs, editor]
+license: MIT
+url: http://etherpad.org/
+docs: https://github.com/ether/etherpad-lite/wiki
+description: Really real-time collaborative document editing
+info:
+
+deps:
+  nodejs: ">=4.0.0"
+
+version:
+  self:
+    src: https://github.com/ether/etherpad-lite
+    regex: '(?<=data-name=")[0-9.]+(?=")'
+
+tags:
+  latest:
+    src: https://github.com/ether/etherpad-lite/releases/latest
+    regex: (?<=tag/).*(?=">)
+
+config:
+  host: ip
+  port: port
+  database_type: dbType # sqlite/mysql/postgresql
+  database_host: dbSettings.host
+  database_user: dbSettings.user
+  database_password: dbSettings.password
+  database_name: dbSettings.database
+
+vars:
+- app/package.json
+
+exec:
+  start: lib/nodejs/bin/node node_modules/ep_etherpad-lite/node/server.js --apikey srv/APIKEY.txt --sessionkey srv/SESSIONKEY.txt --settings etc/config.json
+
+env:
+  NODE_ENV: production
+
+tasks:
+  build:
+  # Download etherpad sources
+  - getfile https://github.com/ether/etherpad-lite/archive/${VERSION}.tar.gz etherpad.tar.gz
+  - untar_gz etherpad.tar.gz .
+  - mv etherpad-lite-${VERSION} app
+  - rm etherpad.tar.gz
+
+  # Build
+  - mkdir app/node_modules
+  - mv app/src app/node_modules/ep_etherpad-lite
+  - node lib/nodejs/lib/node_modules/npm install --prefix app/node_modules/ep_etherpad-lite --unsafe-perm
+  - node lib/nodejs/lib/node_modules/npm install --prefix app/node_modules/ep_etherpad-lite sqlite3 --unsafe-perm
+
+  # Template
+  - cd app/node_modules/ep_etherpad-lite/static/custom
+  - cp js.template index.js
+  - cp js.template pad.js
+  - cp js.template timeslider.js
+  - cp css.template index.css
+  - cp css.template pad.css
+  - cp css.template timeslider.css
+
+  add:
+  - modules = file_exists? node_modules
+  - if modules = false:
+    - symlink app/node_modules node_modules
+  - temp = file_exists? var
+  - if temp = false:
+    - mkdir_p /tmp/etherpad
+    - symlink /tmp/etherpad var
