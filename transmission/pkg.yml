@@ -41,8 +41,7 @@ tasks:
   - mkdir_p srv/completed srv/progress srv/watched
   add:
   # symlink not copied
-  - file = file_exists? srv/settings.json
-  - if file == false:
+  - if file_exists? srv/settings.json == false:
     - symlink ../etc/config.json srv/settings.json
   - json.set etc/config.json download-dir "${PKGDIR}/srv/completed"
   - json.set etc/config.json incomplete-dir "${PKGDIR}/srv/progress"

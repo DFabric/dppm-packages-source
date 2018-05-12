@@ -66,10 +66,8 @@ tasks:
   - cp css.template timeslider.css
 
   add:
-  - modules = file_exists? node_modules
-  - if modules == false:
+  - if file_exists? node_modules == false:
     - symlink app/node_modules node_modules
-  - temp = file_exists? var
-  - if temp == false:
+  - if file_exists? var == false:
     - mkdir_p /tmp/etherpad
     - symlink /tmp/etherpad var
