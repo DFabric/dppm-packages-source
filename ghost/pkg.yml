@@ -45,7 +45,7 @@ env:
 tasks:
   build:
   - write etc/npmrc "scripts-prepend-node-path = true"
-  - node lib/nodejs/lib/node_modules/npm --scripts-prepend-node-path lib/nodejs/bin install ghost@${VERSION} -g --unsafe-perm --prefix .
+  - node lib/nodejs/lib/node_modules/npm --scripts-prepend-node-path lib/nodejs/bin install ghost@${VERSION} -g --unsafe-perm --only=production --prefix .
   - mv lib/node_modules/ghost app
   - mv app/content srv
   - rm_r lib/node_modules etc/npmrc

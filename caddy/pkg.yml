@@ -67,6 +67,6 @@ tasks:
   - chmod etc/cert 770
 
   add:
-  - if USER = root:
+  - if USER == root:
     # Give the caddy binary the ability to bind to privileged ports (e.g. 80, 443) as a non-root user
     - /bin/setcap cap_net_bind_service=+ep app/caddy
