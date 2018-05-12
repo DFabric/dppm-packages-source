@@ -9,7 +9,7 @@ description: Really real-time collaborative document editing
 info:
 
 deps:
-  nodejs: ">=4.0.0"
+  nodejs: ">=4.0.0 <9.0.0"
 
 version:
   self:
@@ -48,10 +48,13 @@ tasks:
   - rm etherpad.tar.gz
 
   # Build
+  - write etc/npmrc "scripts-prepend-node-path = true"
   - mkdir app/node_modules
   - mv app/src app/node_modules/ep_etherpad-lite
-  - node lib/nodejs/lib/node_modules/npm install --prefix app/node_modules/ep_etherpad-lite --unsafe-perm
-  - node lib/nodejs/lib/node_modules/npm install --prefix app/node_modules/ep_etherpad-lite sqlite3 --unsafe-perm
+  - node lib/nodejs/lib/node_modules/npm --scripts-prepend-node-path lib/nodejs/bin install --unsafe-perm --only=production --prefix app/node_modules/ep_etherpad-lite
+  - node lib/nodejs/lib/node_modules/npm --scripts-prepend-node-path lib/nodejs/bin install --unsafe-perm --only=production --prefix . sqlite3 -g
+  - mv lib/node_modules/sqlite3 app/node_modules/ep_etherpad-lite/node_modules/sqlite3
+  - rm etc/npmrc
 
   # Template
   - cd app/node_modules/ep_etherpad-lite/static/custom
@@ -64,9 +67,9 @@ tasks:
 
   add:
   - modules = file_exists? node_modules
-  - if modules = false:
+  - if modules == false:
     - symlink app/node_modules node_modules
   - temp = file_exists? var
-  - if temp = false:
+  - if temp == false:
     - mkdir_p /tmp/etherpad
     - symlink /tmp/etherpad var
