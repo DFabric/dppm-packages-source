@@ -6,7 +6,7 @@ license: MIT
 url: https://gitea.io/
 docs: https://docs.gitea.io/
 description: Git with a cup of tea - A painless self-hosted Git service
-info: When accessed for the fist time, keeping the default values is recommended on the web installer
+info: When accessed for the fist time, keeping the default values is recommended on the web installer. After clicking on `install`, restart the service.
 
 deps:
   git: ">=1.7.1"
@@ -33,7 +33,7 @@ tags:
     src: https://github.com/go-gitea/gitea/releases/latest
     regex: (?<=tag/v).*(?=">)
 
-# https://henriquedias.com/filemanager/configuration/
+# https://docs.gitea.io/en-us/config-cheat-sheet/ 
 config:
   url: server.ROOT_URL
   domain: server.DOMAIN
@@ -50,9 +50,11 @@ exec:
 
 env:
   GITEA_WORK_DIR: .
+  HOME: .
 
 tasks:
   build:
   # Download the archive
   - mkdir app
   - getfile https://dl.gitea.io/gitea/${VERSION}/gitea-${VERSION}-${KERNEL}-${ARCH_ALIAS} app/gitea
+  - chmod app/gitea 750
