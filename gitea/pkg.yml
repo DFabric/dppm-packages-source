@@ -57,4 +57,4 @@ tasks:
   # Download the archive
   - mkdir app
   - getfile https://dl.gitea.io/gitea/${VERSION}/gitea-${VERSION}-${KERNEL}-${ARCH_ALIAS} app/gitea
-  - chmod app/gitea 750
+  - chmod app/gitea 111
