@@ -1,7 +1,6 @@
 package: python
 name: Python
 type: lib
-keywords: [python]
 license: Python-2.0
 url: https://www.python.org/
 docs: https://docs.python.org/

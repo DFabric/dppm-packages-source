@@ -1,7 +1,6 @@
 package: ruby
 name: ruby
 type: lib
-keywords: [ruby]
 license: BSD-2-Clause
 url: https://www.ruby-lang.org/
 docs: https://www.ruby-lang.org/en/documentation/

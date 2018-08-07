@@ -1,7 +1,6 @@
 package: nodejs
 name: Node.js
 type: lib
-keywords: [nodejs, javascript]
 license: MIT
 url: https://nodejs.org/
 docs: https://nodejs.org/docs/

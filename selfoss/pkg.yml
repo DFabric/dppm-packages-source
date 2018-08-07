@@ -1,7 +1,6 @@
 package: selfoss
 name: selfoss
 type: app
-keywords: [php, php-fpm]
 license: GPL-3.0
 url: https://selfoss.aditu.de/
 docs: https://selfoss.aditu.de/#documentation

@@ -1,7 +1,6 @@
 package: transmission
 name: Transmission
 type: app
-keywords: [torrent]
 license: (GPL-2.0 OR GPL-3.0)
 url: https://transmissionbt.com/
 docs: https://github.com/transmission/transmission/wiki

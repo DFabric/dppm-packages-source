@@ -1,7 +1,6 @@
 package: caddy
 name: Caddy
 type: app
-keywords: [webserver]
 license: Apache-2.0
 url: https://caddyserver.com
 docs: https://caddyserver.com/docs

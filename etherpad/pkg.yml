@@ -1,7 +1,6 @@
 package: etherpad
 name: Etherpad
 type: app
-keywords: [nodejs, editor]
 license: MIT
 url: http://etherpad.org/
 docs: https://github.com/ether/etherpad-lite/wiki

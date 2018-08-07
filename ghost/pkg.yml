@@ -1,7 +1,6 @@
 package: ghost
 name: Ghost
 type: app
-keywords: [nodejs, blog, cms]
 license: MIT
 url: https://ghost.org/
 docs: https://docs.ghost.org

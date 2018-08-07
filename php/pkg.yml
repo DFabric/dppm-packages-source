@@ -1,7 +1,6 @@
 package: php
 name: PHP
 type: lib
-keywords: [php, php-fpm]
 license: PHP-3.01
 url: https://secure.php.net/
 docs: https://secure.php.net/docs.php

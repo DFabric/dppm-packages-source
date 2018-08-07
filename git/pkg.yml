@@ -1,7 +1,6 @@
 package: git
 name: Git
 type: lib
-keywords: [git]
 license: (GPL-2.0 AND LGPL-2.1)
 url: https://git-scm.com
 docs: https://git-scm.com/doc
