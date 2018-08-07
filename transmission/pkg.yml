@@ -46,4 +46,4 @@ tasks:
   - json.set etc/config.json incomplete-dir "${PKGDIR}/srv/progress"
   - json.set etc/config.json watch-dir "${PKGDIR}/srv/watched"
   # Set umask to 027
-  - json.set etc/config.json umask "23"
+  - json.set etc/config.json umask 23
