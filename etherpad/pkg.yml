@@ -23,11 +23,16 @@ tags:
 config:
   host: ip
   port: port
-  database_type: dbType # sqlite/mysql/postgresql
+  database_type: dbType
   database_host: dbSettings.host
   database_user: dbSettings.user
   database_password: dbSettings.password
   database_name: dbSettings.database
+
+databases:
+  sqlite3: null
+  mysql: null
+  postgresql: null
 
 vars:
 - app/package.json
@@ -37,6 +42,9 @@ exec:
 
 env:
   NODE_ENV: production
+
+aliases:
+  sqlite3: sqlite
 
 tasks:
   build:

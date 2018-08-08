@@ -10,10 +10,6 @@ info: npm is also included
 version:
   self:
     src: https://nodejs.org/dist/index.tab
-  alias:
-    armhf: armhfl
-    armv6: armv6l
-    x86-64: x64
   linux:
     arm64: (?<=v).*(?=	2.*linux-arm64)
     armhf: (?<=v).*(?=	2.*linux-armhfl)
@@ -46,6 +42,11 @@ tags:
     src: https://nodejs.org/dist/latest-v7.x/SHASUMS256.txt
   latest-8:
     src: https://nodejs.org/dist/latest-v8.x/SHASUMS256.txt
+
+aliases:
+  armhf: armhfl
+  armv6: armv6l
+  x86-64: x64
 
 tasks:
   build:

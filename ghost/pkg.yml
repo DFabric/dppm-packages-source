@@ -24,11 +24,15 @@ config:
   url: url
   host: server.host
   port: server.port
-  database_type: database.client # sqlite3/mysql
+  database_type: database.client
   database_host: database.connection.host
   database_user: database.connection.user
   database_password: database.connection.password
   database_name: database.connection.database
+
+databases:
+  sqlite3: null
+  mysql: null
 
 vars:
 - app/package.json

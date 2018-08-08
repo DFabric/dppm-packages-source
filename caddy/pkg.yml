@@ -11,9 +11,6 @@ version:
   self:
     src: https://github.com/mholt/caddy
     regex: '(?<=data-name="v)[0-9.]+(?=")'
-  alias:
-    x86: 386
-    x86-64: amd64
   linux:
     armv5: null
     armv6: null
@@ -52,6 +49,10 @@ exec:
 
 env:
   CADDYPATH: etc/cert
+
+aliases:
+  x86: 386
+  x86-64: amd64
 
 tasks:
   build:

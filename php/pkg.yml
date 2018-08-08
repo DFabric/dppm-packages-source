@@ -21,17 +21,19 @@ tags:
     regex: (?<=php-static_).*(?=_linux_arm64)
 
 exec:
-  start: lib/php/sbin/php-fpm --nodaemonize --allow-to-run-as-root --fpm-config etc/php-fpm.conf --prefix .
-  reload: USR2
+  start: lib/php/sbin/php-fpm --allow-to-run-as-root --fpm-config etc/php-fpm.conf --prefix .
   test: lib/php/sbin/php-fpm --test --allow-to-run-as-root --fpm-config etc/php-fpm.conf --prefix .
+  reload: USR2
 
 # Used in the php application, not in the library itself
 tasks:
   add:
   - ini.del etc/php-fpm.conf global.include
-  - ini.set etc/php-fpm.conf global.pid /run/${NAME}.pid
+  - ini.set etc/php-fpm.conf global.pid pid
   - ini.set etc/php-fpm.conf global.include etc/php-fpm.d/*.conf
+  - ini.set etc/php-fpm.conf global.daemonize no
   - ini.set etc/php-fpm.d/www.conf www.listen\.allowed_clients [::1]
   - ini.set etc/php-fpm.d/www.conf www.group ${GROUP}
   - ini.set etc/php-fpm.d/www.conf www.user ${USER}
-  - ini.set etc/php-fpm.d/www.conf www.listen /run/${NAME}.sock
+  - ini.set etc/php-fpm.d/www.conf www.listen sock
+  - ini.set etc/php-fpm.d/www.conf www.catch_workers_output yes

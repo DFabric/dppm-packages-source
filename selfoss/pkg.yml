@@ -22,13 +22,22 @@ tags:
 
 config:
   url: globals.base_url
-  database_port: globals.db_port
-  database_type: globals.db_type # sqlite/mysql/pgsql
+  database_type: globals.db_type
   database_port: globals.db_port
   database_host: globals.db_host
   database_user: globals.db_user
   database_password: globals.db_password
   database_name: globals.db_name
+
+
+databases:
+  sqlite3: null
+  mysql: null
+  postgresql: null
+
+aliases:
+  sqlite3: sqlite
+  postgresql: pgsql
 
 tasks:
   build:
@@ -38,7 +47,4 @@ tasks:
   - rm selfoss-${VERSION}.zip
   - symlink lib/selfoss/data srv
   # Configuration normalization
-  - cp lib/selfoss/defaults.ini lib/selfoss/config.ini
-  - symlink ../lib/selfoss/config.ini etc/config.ini
-  - set etc/config.ini globals.db_file data/sqlite3.db
-  - set etc/config.ini globals.logger_destination file:log/default.log
+  - symlink etc/config.ini ../lib/selfoss/config.ini

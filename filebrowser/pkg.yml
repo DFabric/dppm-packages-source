@@ -14,10 +14,6 @@ version:
   self:
     src: https://github.com/filebrowser/filebrowser
     regex: '(?<=data-name="v)[0-9.]+(?=")'
-  alias:
-    x86-64: amd64
-    x86: 386
-    armhf: arm
   linux:
     arm64: null
     armhf: null
@@ -46,8 +42,16 @@ config:
   port: port
   host: address
 
+databases:
+  sqlite3: sqlite3
+
 exec:
   start: app/filebrowser -c etc/config.yml
+
+aliases:
+  x86-64: amd64
+  x86: 386
+  armhf: arm
 
 tasks:
   build:

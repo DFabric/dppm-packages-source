@@ -14,12 +14,6 @@ version:
   self:
     src: https://dl.gitea.io/gitea/?sort=name&order=desc
     regex: (?<=\./)[0-9].*(?=/)
-  alias:
-    x86-64: amd64
-    x86: 386
-    arm64: arm64
-    armhf: arm-7
-    armv6: arm-6
   linux:
     arm64: null
     armhf: null
@@ -34,15 +28,20 @@ tags:
 
 # https://docs.gitea.io/en-us/config-cheat-sheet/ 
 config:
-  url: server.ROOT_URL
   domain: server.DOMAIN
   host: server.HTTP_ADDR
   port: server.HTTP_PORT
-  database_type: database.DB_TYPE # sqlite3/mysql/postgres/mssql
-  database_host: database.DB_HOST
-  database_user: database.DB_USER
-  database_password: database.DB_PASSWD
-  database_name: database.DB_NAME
+  database_type: database.DB_TYPE
+  database_host: database.HOST
+  database_user: database.USER
+  database_password: database.PASSWD
+  database_name: database.NAME
+
+databases:
+  sqlite3: null
+  mysql: null
+  postgres: null
+  mssql: null
 
 exec:
   start: app/gitea web -c ../etc/config.ini
@@ -50,6 +49,14 @@ exec:
 env:
   GITEA_WORK_DIR: .
   HOME: .
+
+aliases:
+  x86-64: amd64
+  x86: 386
+  arm64: arm64
+  armhf: arm-7
+  armv6: arm-6
+  postgressql: postgres
 
 tasks:
   build:
