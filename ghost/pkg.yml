@@ -10,6 +10,10 @@ info: After the installation visit /ghost and create your admin user to login to
 deps:
   nodejs: ^6.9.0 || ^8.9.0
 
+features:
+  socket: server.socket.path
+  contained: true
+
 version:
   self:
     src: https://github.com/TryGhost/Ghost

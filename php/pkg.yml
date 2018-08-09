@@ -7,6 +7,9 @@ docs: https://secure.php.net/docs.php
 description: PHP is a popular general-purpose scripting language that is especially suited to web development.
 info: pear is also included
 
+features:
+  contained: true
+
 version:
   self:
     src: https://bitbucket.org/dfabric/packages/downloads/SHA512SUMS
@@ -35,5 +38,5 @@ tasks:
   - ini.set etc/php-fpm.d/www.conf www.listen\.allowed_clients [::1]
   - ini.set etc/php-fpm.d/www.conf www.group ${GROUP}
   - ini.set etc/php-fpm.d/www.conf www.user ${USER}
-  - ini.set etc/php-fpm.d/www.conf www.listen sock
+  - ini.set etc/php-fpm.d/www.conf www.listen socket
   - ini.set etc/php-fpm.d/www.conf www.catch_workers_output yes
