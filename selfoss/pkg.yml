@@ -42,9 +42,8 @@ aliases:
 tasks:
   build:
   - getfile https://github.com/SSilence/selfoss/releases/download/${VERSION}/selfoss-${VERSION}.zip
-  - ls
   - unzip selfoss-${VERSION}.zip app
   - rm selfoss-${VERSION}.zip
   - symlink app/data srv
   # Configuration normalization
-  - symlink etc/config.ini ../config.ini
+  - symlink etc/config.ini app/config.ini

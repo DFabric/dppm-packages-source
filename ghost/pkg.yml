@@ -6,13 +6,12 @@ url: https://ghost.org/
 docs: https://docs.ghost.org
 description: Simple and powerful blogging/publishing platform
 info: After the installation visit /ghost and create your admin user to login to the Ghost admin
+shared: false
 
 deps:
   nodejs: ^6.9.0 || ^8.9.0
 
-features:
-  socket: server.socket.path
-  contained: true
+shared: false
 
 version:
   self:
@@ -47,7 +46,7 @@ exec:
 
 env:
   NODE_ENV: production
-  paths__contentPath:
+  paths__contentPath: ../srv
 
 tasks:
   build:
@@ -56,13 +55,13 @@ tasks:
   - mv lib/node_modules/ghost app
   - mv app/content srv
   - rm_r lib/node_modules etc/npmrc
-
-  # Symlink to standard locations
-  - rm app/core/server/config/env/config.production.json
-  - symlink ../../../../../etc/config.json app/core/server/config/env/config.production.json
   - append app/node_modules/knex-migrator/logging.js "; process.env.NODE_ENV = "production""
 
   add:
+  # Symlink to standard locations
+  - rm app/core/server/config/env/config.production.json
+  - symlink ../../../../../etc/config.json app/core/server/config/env/config.production.json
+
   # Initialize/migrate database if needed
   - cd app
   - node node_modules/knex-migrator/bin/knex-migrator-init

@@ -8,12 +8,8 @@
   },
   "server": {
     "host": "::1",
-    "port": 2368,
-    "socket": {
-      "path": "socket",
-      "permissions": "0660"
-   }
- },
+    "port": 2368
+  },
   "paths": {
     "contentPath": "../srv/"
   },

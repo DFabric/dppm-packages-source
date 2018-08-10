@@ -10,9 +10,6 @@ info: When accessed for the fist time, keeping the default values is recommended
 deps:
   git: ">=1.7.1"
 
-features:
-  socket: server.HTTP_ADDR
-
 version:
   self:
     src: https://dl.gitea.io/gitea/?sort=name&order=desc
