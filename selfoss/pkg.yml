@@ -6,6 +6,7 @@ url: https://selfoss.aditu.de/
 docs: https://selfoss.aditu.de/#documentation
 description: The new multipurpose rss reader, live stream, mashup, aggregation web application
 info: do more that rss
+shared: false
 
 deps:
   php: ">=5.3.0"
@@ -45,5 +46,8 @@ tasks:
   - unzip selfoss-${VERSION}.zip app
   - rm selfoss-${VERSION}.zip
   - symlink app/data srv
-  # Configuration normalization
-  - symlink etc/config.ini app/config.ini
+
+  add:
+  # configuration normalization
+  - if file_exists? app/config.ini == false:
+    - symlink etc/config.ini app/config.ini

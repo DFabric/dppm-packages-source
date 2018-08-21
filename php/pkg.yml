@@ -6,7 +6,6 @@ url: https://secure.php.net/
 docs: https://secure.php.net/docs.php
 description: PHP is a popular general-purpose scripting language that is especially suited to web development.
 info: pear is also included
-shared: false
 
 version:
   self:
@@ -21,20 +20,10 @@ tags:
     src: https://bitbucket.org/dfabric/packages/downloads/SHA512SUMS
     regex: (?<=php-static_).*(?=_linux_arm64)
 
+config:
+  address_port: www.listen
+
 exec:
   start: lib/php/sbin/php-fpm --allow-to-run-as-root --fpm-config etc/php-fpm.conf --prefix .
   test: lib/php/sbin/php-fpm --test --allow-to-run-as-root --fpm-config etc/php-fpm.conf --prefix .
   reload: USR2
-
-# Used in the php application, not in the library itself
-tasks:
-  add:
-  - ini.del etc/php-fpm.conf global.include
-  - ini.set etc/php-fpm.conf global.pid pid
-  - ini.set etc/php-fpm.conf global.include etc/php-fpm.d/*.conf
-  - ini.set etc/php-fpm.conf global.daemonize no
-  - ini.set etc/php-fpm.d/www.conf www.listen\.allowed_clients [::1]
-  - ini.set etc/php-fpm.d/www.conf www.group ${GROUP}
-  - ini.set etc/php-fpm.d/www.conf www.user ${USER}
-  - ini.set etc/php-fpm.d/www.conf www.listen socket
-  - ini.set etc/php-fpm.d/www.conf www.catch_workers_output yes
