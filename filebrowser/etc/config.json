@@ -1,0 +1,19 @@
+{
+  "port": 8000,
+  "noAuth": false,
+  "baseURL": "/admin",
+  "address": "[::1]",
+  "alternativeReCaptcha": false,
+  "reCaptchaKey": "",
+  "reCaptchaSecret": "",
+  "database": "srv/sqlite3.db",
+  "log": "stdout",
+  "plugin": "",
+  "scope": "srv/files",
+  "allowCommands": true,
+  "allowEdit": true,
+  "allowNew": true,
+  "commands": [
+    "git"
+  ]
+}
