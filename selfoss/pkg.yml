@@ -9,7 +9,7 @@ info: do more that rss
 shared: false
 
 deps:
-  php: ">=5.3.0"
+  php: ">=5.4.0"
 
 version:
   self:
@@ -33,7 +33,7 @@ config:
 
 databases:
   sqlite3: null
-  mysql: null
+  mysql: ">=5.5.3"
   postgresql: null
 
 aliases:
@@ -45,9 +45,11 @@ tasks:
   - getfile https://github.com/SSilence/selfoss/releases/download/${VERSION}/selfoss-${VERSION}.zip
   - unzip selfoss-${VERSION}.zip app
   - rm selfoss-${VERSION}.zip
-  - symlink app/data srv
+  - mv app/data srv
 
   add:
+  - if symlink? app/data == false:
+    - symlink ../srv app/data
   # configuration normalization
   - if file_exists? app/config.ini == false:
-    - symlink etc/config.ini app/config.ini
+    - symlink ../etc/config.ini app/config.ini
