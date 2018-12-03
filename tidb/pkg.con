@@ -1,0 +1,33 @@
+package     "tidb"
+name        "TiDB"
+type        "app"
+license     "Apache-2.0"
+url         "https://www.pingcap.com/"
+docs        "https://www.pingcap.com/docs/"
+description "TiDB is a distributed HTAP database compatible with the MySQL protocol"
+info        "Not distributed because TiKV and PD not used"
+
+version {
+  self {
+    src "https://bitbucket.org/dfabric/packages/downloads/SHA512SUMS"
+  }
+  linux {
+    arm64  "(?<=tidb-static_).*(?=_linux_arm64)"
+    x86-64 "(?<=tidb-static_).*(?=_linux_x86-64)"
+  }
+}
+tags {
+  latest {
+    src   "https://bitbucket.org/dfabric/packages/downloads/SHA512SUMS"
+    regex "(?<=tidb-static_).*(?=_linux_arm64)"
+  }
+}
+config {
+  host        ".host"
+  port        ".port"
+  port_status "status.status-port"
+  socket      ".socket"
+}
+exec {
+  start "app/bin/tidb-server -config etc/config.toml"
+}

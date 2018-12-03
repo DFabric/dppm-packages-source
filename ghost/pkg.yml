@@ -66,3 +66,4 @@ tasks:
   - cd app
   - node node_modules/knex-migrator/bin/knex-migrator-init
   - node node_modules/knex-migrator/bin/knex-migrator-migrate
+

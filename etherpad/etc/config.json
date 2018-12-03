@@ -2,7 +2,7 @@
   "title": "Etherpad",
   "ip": "::1",
   "port" : 9001,
-  "dbType" : "sqlite",
+  "dbType" : "dirty",
   "dbSettings" : {
     "filename" : "srv/sqlite3.db",
     "charset"  : "utf8mb4"

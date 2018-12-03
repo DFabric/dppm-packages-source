@@ -1,0 +1,33 @@
+package     "php"
+name        "PHP"
+type        "lib"
+license     "PHP-3.01"
+url         "https://secure.php.net/"
+docs        "https://secure.php.net/docs.php"
+description "PHP is a popular general-purpose scripting language that is especially suited to web development."
+info        "pear is also included"
+
+version {
+  self {
+    src "https://bitbucket.org/dfabric/packages/downloads/SHA512SUMS"
+  }
+  linux {
+    arm64  "(?<=php-static_).*(?=_linux_arm64)"
+    armhf  "(?<=php-static_).*(?=_linux_armhf)"
+    x86-64 "(?<=php-static_).*(?=_linux_x86-64)"
+  }
+}
+tags {
+  latest {
+    src   "https://bitbucket.org/dfabric/packages/downloads/SHA512SUMS"
+    regex "(?<=php-static_).*(?=_linux_arm64)"
+  }
+}
+config {
+  address_port "www.listen"
+}
+exec {
+  start  "lib/php/sbin/php-fpm --allow-to-run-as-root --fpm-config etc/php-fpm.conf --prefix ."
+  test   "lib/php/sbin/php-fpm --allow-to-run-as-root --fpm-config etc/php-fpm.conf --prefix . --test"
+  reload "USR2"
+}

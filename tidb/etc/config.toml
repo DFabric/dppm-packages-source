@@ -1,0 +1,11 @@
+host = "::1"
+port = 4000
+path = "srv"
+socket = "socket"
+
+[log]
+format = "console"
+
+[status]
+report-status = false
+status-port = 10080

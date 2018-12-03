@@ -1,6 +1,4 @@
-{
-  "url": "http://localhost:2368",
-  "database": {
+tabase": {
     "client": "sqlite3",
     "connection": {
       "filename": "../srv/sqlite3.db"

@@ -1,0 +1,72 @@
+package     "gitea"
+name        "Gitea"
+type        "app"
+license     "MIT"
+url         "https://gitea.io/"
+docs        "https://docs.gitea.io/"
+description "Git with a cup of tea - A painless self-hosted Git service"
+info        "When accessed for the fist time, keeping the default values is recommended on the web installer. After clicking on `install`, restart the service."
+shared      true
+
+deps {
+  git ">=1.7.1"
+}
+version {
+  self {
+    src   "https://dl.gitea.io/gitea/?sort=name&order=desc"
+    regex "(?<=\./)[0-9].*(?=/)"
+  }
+  linux {
+    arm64  nil
+    armhf  nil
+    armv6  nil
+    x86    nil
+    x86-64 nil
+  }
+}
+tags {
+  latest {
+    src   "https://github.com/go-gitea/gitea/releases/latest"
+    regex "(?<=tag/v).*(?=\">)"
+  }
+}
+# https://docs.gitea.io/en-us/config-cheat-sheet/ 
+config {
+  domain            "server.DOMAIN"
+  host              "server.HTTP_ADDR"
+  port              "server.HTTP_PORT"
+  database_type     "database.DB_TYPE"
+  database_host     "database.HOST"
+  database_user     "database.USER"
+  database_password "database.PASSWD"
+  database_name     "database.NAME"
+}
+databases {
+  sqlite3  nil
+  mysql    nil
+  postgres nil
+  mssql    nil
+}
+exec {
+  start "app/gitea web -c ../etc/config.ini"
+}
+env {
+  GITEA_WORK_DIR "."
+  HOME           "."
+}
+aliases {
+  x86-64      "amd64"
+  x86         "386"
+  arm64       "arm64"
+  armhf       "arm-7"
+  armv6       "arm-6"
+  postgressql "postgres"
+}
+tasks {
+  build [
+    # Download the archive
+    "mkdir app"
+    "getfile https://dl.gitea.io/gitea/${VERSION}/gitea-${VERSION}-${KERNEL}-${ARCH_ALIAS} app/gitea"
+    "chmod app/gitea 111"
+  ]
+}

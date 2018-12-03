@@ -1,0 +1,50 @@
+package     "nodejs"
+name        "Node.js"
+type        "lib"
+license     "MIT"
+url         "https://nodejs.org/"
+docs        "https://nodejs.org/docs/"
+description "Node.js® is a JavaScript runtime built on Chrome's V8 JavaScript engin"
+info        "npm is also included"
+
+version {
+  self {
+    src "https://nodejs.org/dist/index.tab"
+  }
+  linux{
+    arm64   "(?<=v).*(?=	2.*linux-arm64)"
+    armhf   "(?<=v).*(?=	2.*linux-armhfl)"
+    armv6   "(?<=v).*(?=	2.*linux-armv6l)"
+    ppc64   "(?<=v).*(?=	2.*linux-aix-ppc64)"
+    ppc64le "(?<=v).*(?=	2.*linux-ppc64le)"
+    x86     "(?<=v).*(?=	2.*linux-x86)"
+    x86-64  "(?<=v).*(?=	2.*linux-x64)"
+  }
+  darwin{
+    x86-64 "(?<=v).*(?=	2.*darwin-x64)"
+  }
+}
+tags {
+  current {
+    src   "https://nodejs.org/dist/latest/SHASUMS256.txt"
+    regex "(?<=v).*(?=	2.*linux-x64)"
+  }
+  latest {
+    src   "https://nodejs.org/en/"
+    regex "(?<=Download ).*(?= LTS)"
+  }
+}
+aliases {
+  armhf "armhfl"
+  armv6 "armv6l"
+  x86-64 "x64"
+}
+tasks {
+  build [
+    "node = 'node-v${VERSION}-${KERNEL}-${ARCH_ALIAS}'"
+    "getfile https://nodejs.org/dist/v${VERSION}/${node}.tar.xz"
+    "untar_xz ${node}.tar.xz ."
+    "glob mv ${node}/* ."
+    "glob rm_r ${node}*"
+  ]
+}
