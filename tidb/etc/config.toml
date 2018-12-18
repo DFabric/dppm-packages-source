@@ -1,7 +1,6 @@
-host = "::1"
+host = "[::1]"
 port = 4000
 path = "srv"
-socket = "socket"
 
 [log]
 format = "console"
