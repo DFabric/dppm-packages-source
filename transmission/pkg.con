@@ -49,6 +49,6 @@ tasks {
       "symlink ../etc/config.json srv/settings.json"
     ]
     # Set umask to 027
-    "json.set etc/config.json umask 23"
+    "set etc/config.json umask 23"
   ]
 }
