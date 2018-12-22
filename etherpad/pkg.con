@@ -58,13 +58,9 @@ tasks {
     "rm etherpad.tar.gz"
 
     # Build
-    "write etc/npmrc 'scripts-prepend-node-path = true'"
     "mkdir app/node_modules"
     "mv app/src app/node_modules/ep_etherpad-lite"
-    "node lib/nodejs/lib/node_modules/npm --scripts-prepend-node-path lib/nodejs/bin install --unsafe-perm --only=production --prefix app/node_modules/ep_etherpad-lite"
-#    "node lib/nodejs/lib/node_modules/npm --scripts-prepend-node-path lib/nodejs/bin install --unsafe-perm --only=production --prefix . sqlite3 -g"
-#    "mv lib/node_modules/sqlite3 app/node_modules/ep_etherpad-lite/node_modules/sqlite3"
-    "rm etc/npmrc"
+    "node lib/nodejs/lib/node_modules/npm install --unsafe-perm --only=production --prefix app/node_modules/ep_etherpad-lite"
 
     # Copy templates
     "cd app/node_modules/ep_etherpad-lite/static/custom"
@@ -79,9 +75,5 @@ tasks {
     "if file_exists? node_modules == false" [
       "symlink app/node_modules node_modules"
     ]
-#    "if file_exists? var == false" [
-#      "mkdir_p /tmp/etherpad"
-#      "symlink /tmp/etherpad var"
-#    ]
   ]
 }
