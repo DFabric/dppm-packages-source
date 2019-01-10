@@ -11,7 +11,7 @@ version {
   self {
     src "https://nodejs.org/dist/index.tab"
   }
-  linux{
+  linux {
     arm64   "(?<=v).*(?=	2.*linux-arm64)"
     armhf   "(?<=v).*(?=	2.*linux-armhfl)"
     armv6   "(?<=v).*(?=	2.*linux-armv6l)"

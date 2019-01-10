@@ -42,17 +42,10 @@ config {
   database_name     "database.NAME"
 }
 databases {
-  sqlite3  nil
-  mysql    nil
-  postgres nil
-  mssql    nil
-}
-exec {
-  start "app/gitea web -c ../etc/config.ini"
-}
-env {
-  GITEA_WORK_DIR "."
-  HOME           "."
+  sqlite3    nil
+  mysql      nil
+  postgresql nil
+  mssql      nil
 }
 aliases {
   x86-64      "amd64"
@@ -61,6 +54,13 @@ aliases {
   armhf       "arm-7"
   armv6       "arm-6"
   postgressql "postgres"
+}
+exec {
+  start "app/gitea web -c ../etc/config.ini"
+}
+env {
+  GITEA_WORK_DIR "."
+  HOME           "."
 }
 tasks {
   build [
