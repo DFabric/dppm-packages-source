@@ -5,7 +5,7 @@ license     "MIT"
 url         "https://gitea.io/"
 docs        "https://docs.gitea.io/"
 description "Git with a cup of tea - A painless self-hosted Git service"
-info        "When accessed for the fist time, keeping the default values is recommended on the web installer. After clicking on `install`, restart the service."
+info        "Git Version Control"
 shared      true
 
 deps {
