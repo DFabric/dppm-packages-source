@@ -54,7 +54,7 @@ databases {
   sqlite3 "sqlite3"
 }
 exec {
-  start "app/filebrowser -c etc/config.yml"
+  start "app/filebrowser -c etc/config.json"
 }
 aliases {
   x86-64 "amd64"
