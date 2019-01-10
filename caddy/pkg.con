@@ -10,7 +10,7 @@ shared       true
 
 version {
   self {
-    src   "https://github.com/mholt/caddy"
+    src   "https://github.com/mholt/caddy/ref-list/master?source_action=disambiguate&source_controller=files"
     regex "(?<=data-name=\"v)[0-9.]+(?=\")"
   }
   linux {
