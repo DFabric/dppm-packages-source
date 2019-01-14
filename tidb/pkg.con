@@ -7,6 +7,7 @@ docs        "https://www.pingcap.com/docs/"
 description "TiDB is a distributed HTAP database compatible with the MySQL protocol"
 info        "Not distributed because TiKV and PD not used"
 shared      true
+provides    "mysql"
 
 version {
   self {

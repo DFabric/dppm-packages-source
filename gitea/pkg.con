@@ -36,14 +36,14 @@ config {
   host              "server.HTTP_ADDR"
   port              "server.HTTP_PORT"
   database_type     "database.DB_TYPE"
-  database_host     "database.HOST"
+  database_address  "database.HOST"
   database_user     "database.USER"
   database_password "database.PASSWD"
   database_name     "database.NAME"
 }
 databases {
   sqlite3    nil
-  mysql      nil
+  mysql      ">=5.7.0"
   postgresql nil
   mssql      nil
 }
