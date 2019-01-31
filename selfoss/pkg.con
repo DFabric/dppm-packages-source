@@ -7,6 +7,7 @@ docs        "https://selfoss.aditu.de/#documentation"
 description "The new multipurpose rss reader, live stream, mashup, aggregation web application"
 info        "Do more that RSS like aggregation"
 shared      false
+runtime     "php"
 
 deps {
   php ">=5.4.0"
@@ -44,6 +45,7 @@ aliases {
 tasks {
   build [
     "getfile https://github.com/SSilence/selfoss/releases/download/${VERSION}/selfoss-${VERSION}.zip"
+    "mkdir app"
     "unzip selfoss-${VERSION}.zip app"
     "rm selfoss-${VERSION}.zip"
     "mv app/data srv"

@@ -24,10 +24,11 @@ tags {
   }
 }
 config {
+  host         "www.listen\\.allowed_clients"
   address_port "www.listen"
 }
 exec {
-  start  "lib/php/sbin/php-fpm --allow-to-run-as-root --fpm-config etc/php-fpm.conf --prefix ."
-  test   "lib/php/sbin/php-fpm --allow-to-run-as-root --fpm-config etc/php-fpm.conf --prefix . --test"
+  start  "lib/php/sbin/php-fpm --allow-to-run-as-root --fpm-config etc/php/config.ini --prefix ."
+  test   "lib/php/sbin/php-fpm --allow-to-run-as-root --fpm-config etc/php/config.ini --prefix . --test"
   reload "USR2"
 }
