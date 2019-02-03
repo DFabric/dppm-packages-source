@@ -6,4 +6,4 @@ Each package has all its informations needed in their [CON-serialized](https://g
 
 # License
 
-Copyright (c) 2018 Julien Reichardt - ISC License
+Copyright (c) 2018-2019 Julien Reichardt - ISC License
