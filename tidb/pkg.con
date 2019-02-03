@@ -25,10 +25,12 @@ tags {
   }
 }
 config {
-  host        ".host"
-  port        ".port"
-  port_status "status.status-port"
-  socket      ".socket"
+  vars {
+    host        ".host"
+    port        ".port"
+    port_status "status.status-port"
+    socket      ".socket"
+  }
 }
 exec {
   start "app/bin/tidb-server -config etc/config.toml"

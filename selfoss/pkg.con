@@ -25,13 +25,15 @@ tags {
   }
 }
 config {
-  url               "globals.base_url"
-  database_type     "globals.db_type"
-  database_port     "globals.db_port"
-  database_host     "globals.db_host"
-  database_user     "globals.db_user"
-  database_password "globals.db_password"
-  database_name     "globals.db_name"
+  vars {
+    url               "globals.base_url"
+    database_type     "globals.db_type"
+    database_port     "globals.db_port"
+    database_host     "globals.db_host"
+    database_user     "globals.db_user"
+    database_password "globals.db_password"
+    database_name     "globals.db_name"
+  }
 }
 databases {
   sqlite3    nil

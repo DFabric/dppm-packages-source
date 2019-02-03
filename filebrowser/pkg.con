@@ -47,8 +47,10 @@ tags {
   }
 }
 config {
-  port "port"
-  host "address"
+  vars {
+    port "port"
+    host "address"
+  }
 }
 databases {
   sqlite3 nil

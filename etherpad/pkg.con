@@ -24,13 +24,15 @@ tags {
   }
 }
 config {
-  host              "ip"
-  port              "port"
-  database_type     "dbType"
-  database_host     "dbSettings.host"
-  database_user     "dbSettings.user"
-  database_password "dbSettings.password"
-  database_name     "dbSettings.database"
+  vars {
+    host              "ip"
+    port              "port"
+    database_type     "dbType"
+    database_host     "dbSettings.host"
+    database_user     "dbSettings.user"
+    database_password "dbSettings.password"
+    database_name     "dbSettings.database"
+  }
 }
 databases {
   sqlite3    nil

@@ -32,14 +32,16 @@ tags {
 }
 # https://docs.gitea.io/en-us/config-cheat-sheet/ 
 config {
-  domain            "server.DOMAIN"
-  host              "server.HTTP_ADDR"
-  port              "server.HTTP_PORT"
-  database_type     "database.DB_TYPE"
-  database_address  "database.HOST"
-  database_user     "database.USER"
-  database_password "database.PASSWD"
-  database_name     "database.NAME"
+  vars {
+    domain            "server.DOMAIN"
+    host              "server.HTTP_ADDR"
+    port              "server.HTTP_PORT"
+    database_type     "database.DB_TYPE"
+    database_address  "database.HOST"
+    database_user     "database.USER"
+    database_password "database.PASSWD"
+    database_name     "database.NAME"
+  }
 }
 databases {
   sqlite3    nil
