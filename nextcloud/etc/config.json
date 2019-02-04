@@ -1,0 +1,6 @@
+{
+  "system": {
+    "trusted_domains": [],
+    "dbtype": "sqlite3"
+  }
+}

@@ -1,0 +1,62 @@
+package     "nextcloud"
+name        "Nextcloud"
+type        "app"
+license     "AGPL-3.0"
+url         "https://nextcloud.com/"
+docs        "https://nextcloud.com/support/"
+description "A safe home for all your data"
+info        "Suite of client-server software for creating and using file hosting services. Default user|password is 'admin|1234'"
+shared      false
+
+deps {
+  php ">=5.4.0"
+}
+version {
+  self {
+    src   "https://download.nextcloud.com/server/releases/?C=N;O=D"
+    regex "(?<=nextcloud-).*(?=\.zip\")"
+  }
+}
+tags {
+  latest {
+    src   "https://nextcloud.com/install/"
+    regex "(?<=nextcloud-).*(?=\.zip>D)"
+  }
+}
+config {
+  export "lib/php/bin/php app/occ config:list --private ../etc/config.json"
+  import "lib/php/bin/php app/occ config:import ../etc/config.json"
+  vars {
+    url               "system.overwrite.cli.url"
+    database_type     "system.dbtype"
+    database_address  "system.dbhost"
+    database_user     "system.dbuser"
+    database_password "system.dbpassword"
+    database_name     "system.dbname"
+  }
+}
+databases {
+  sqlite3    nil
+  mysql      ">=5.5.0"
+  postgresql nil
+}
+aliases {
+  sqlite3    "sqlite"
+  postgresql "pgsql"
+}
+tasks {
+  build [
+    "getfile https://download.nextcloud.com/server/releases/nextcloud-${VERSION}.tar.bz2"
+    "untar_bz2 nextcloud-${VERSION}.tar.bz2 ."
+    "rm nextcloud-${VERSION}.tar.bz2"
+    "mv nextcloud app"
+  ]
+  add [
+    "set etc/config.json system.trusted_domains[0] ${HOST}"
+    "set etc/config.json system.datadirectory ${BASEDIR}/srv"
+    "if file_exists? srv/index.yml == false" [
+      "php app/occ maintenance:install --admin-pass=1234 --data-dir=${BASEDIR}/srv"
+      "php app/occ config:import ../etc/config.json"
+    ]
+  ]
+}
