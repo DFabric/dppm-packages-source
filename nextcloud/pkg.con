@@ -24,8 +24,9 @@ tags {
   }
 }
 config {
-  export "lib/php/bin/php app/occ config:list --private ../etc/config.json"
+  export "lib/php/bin/php app/occ config:list --private --no-warnings"
   import "lib/php/bin/php app/occ config:import ../etc/config.json"
+  origin "app/config/config.php"
   vars {
     url               "system.overwrite.cli.url"
     database_type     "system.dbtype"
@@ -57,6 +58,8 @@ tasks {
     "if file_exists? srv/index.yml == false" [
       "php app/occ maintenance:install --admin-pass=1234 --data-dir=${BASEDIR}/srv"
       "php app/occ config:import ../etc/config.json"
+      "content = php app/occ config:list --private --no-warnings"
+      "write etc/config.json '${content}'"
     ]
   ]
 }
