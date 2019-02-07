@@ -14,7 +14,7 @@ optdeps {
 version {
   self {
     src   "https://github.com/filebrowser/filebrowser/ref-list/master?source_action=disambiguate&source_controller=files"
-    regex "(?<=data-name=\"v)[0-9.]+(?=\")"
+    regex "(?<=title=\"v)[0-9.]+(?=\")"
   }
   linux {
     arm64  nil

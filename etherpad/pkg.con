@@ -14,7 +14,7 @@ deps {
 version {
   self {
     src   "https://github.com/ether/etherpad-lite/ref-list/master?source_action=disambiguate&source_controller=files"
-    regex "(?<=data-name=\")[0-9.]+(?=\")"
+    regex "(?<=title=\")[0-9.]+(?=\")"
   }
 }
 tags {

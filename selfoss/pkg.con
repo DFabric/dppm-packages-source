@@ -15,7 +15,7 @@ deps {
 version {
   self {
     src   "https://github.com/SSilence/selfoss"
-    regex "(?<=data-name=\")[0-9.]+(?=\")"
+    regex "(?<=title=\")[0-9.]+(?=\")"
   }
 }
 tags {
