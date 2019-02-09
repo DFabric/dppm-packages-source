@@ -53,7 +53,7 @@ tasks {
     "mv nextcloud app"
   ]
   add [
-    "set etc/config.json system.trusted_domains[0] ${HOST}"
+    "set etc/config.json system.trusted_domains[0] '${HOST}'"
     "set etc/config.json system.datadirectory ${BASEDIR}/srv"
     "if file_exists? srv/index.yml == false" [
       "php app/occ maintenance:install --admin-pass=1234 --data-dir=${BASEDIR}/srv"
