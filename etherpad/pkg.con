@@ -35,6 +35,7 @@ config {
   }
 }
 databases {
+  dirty      nil
   sqlite3    nil
   mysql      nil
   postgresql nil
