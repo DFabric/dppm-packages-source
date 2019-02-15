@@ -1,0 +1,58 @@
+package     "wordpress"
+name        "WordPress"
+type        "app"
+license     "GPL-2.0"
+url         "https://wordpress.org/"
+docs        "https://codex.wordpress.org/"
+description "Create a beautiful website, blog, or app"
+info        "Open source content management system (CMS)"
+shared      false
+
+deps {
+  php ">=5.4.0"
+}
+version {
+  self {
+    src   "https://wordpress.org/download/releases/"
+    regex "(?<=wordpress-)[0-9].*(?=.tar.gz\")"
+  }
+}
+tags {
+  latest {
+    src   "https://api.wordpress.org/core/stable-check/1.0/"
+    regex "(?<=\").*(?=\" : \"latest)"
+  }
+}
+config {
+  import "lib/php/bin/php app/wp-cli.php --path=app --allow-root config create --skip-check"
+  origin "app/wp-config.php"
+  vars {
+    url               "url"
+    database_address  "config create.dbhost"
+    database_user     "config create.dbuser"
+    database_password "config create.dbpass"
+    database_name     "config create.dbname"
+  }
+}
+databases {
+  mysql ">=5.5.0"
+}
+env {
+  WP_CLI_CONFIG_PATH  "etc/config.yml"
+  WP_CLI_CACHE_DIR    "srv/.wp-cli/cache/"
+  WP_CLI_PACKAGES_DIR "srv/.wp-cli/packages/"
+}
+tasks {
+  build [
+    "getfile https://wordpress.org/wordpress-${VERSION}.tar.gz"
+    "untar_gz wordpress-${VERSION}.tar.gz ."
+    "rm wordpress-${VERSION}.tar.gz"
+    "mv wordpress app"
+    "getfile https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar app/wp-cli.php"
+    "mkdir_p srv/.wp-cli"
+  ]
+  add [
+    "set etc/config.yml path ${BASEDIR}/app"
+    "php app/wp-cli.php --path=app --allow-root config create --skip-check"
+  ]
+}

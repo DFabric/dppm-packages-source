@@ -1,0 +1,4 @@
+color: false
+
+# Subcommand defaults (e.g. `wp config create`)
+config create: {}
