@@ -44,7 +44,7 @@ vars [
   "app/package.json"
 ]
 exec {
-  start "lib/nodejs/bin/node node_modules/ep_etherpad-lite/node/server.js --apikey srv/APIKEY.txt --sessionkey srv/SESSIONKEY.txt --settings etc/config.json"
+  start "lib/nodejs/bin/node node_modules/ep_etherpad-lite/node/server.js --apikey data/APIKEY.txt --sessionkey data/SESSIONKEY.txt --settings conf/config.json"
 }
 env {
   NODE_ENV "production"

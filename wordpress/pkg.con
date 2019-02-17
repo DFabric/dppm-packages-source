@@ -38,9 +38,9 @@ databases {
   mysql ">=5.5.0"
 }
 env {
-  WP_CLI_CONFIG_PATH  "etc/config.yml"
-  WP_CLI_CACHE_DIR    "srv/.wp-cli/cache/"
-  WP_CLI_PACKAGES_DIR "srv/.wp-cli/packages/"
+  WP_CLI_CONFIG_PATH  "conf/config.yml"
+  WP_CLI_CACHE_DIR    "data/.wp-cli/cache/"
+  WP_CLI_PACKAGES_DIR "data/.wp-cli/packages/"
 }
 tasks {
   build [
@@ -49,10 +49,10 @@ tasks {
     "rm wordpress-${VERSION}.tar.gz"
     "mv wordpress app"
     "getfile https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar app/wp-cli.php"
-    "mkdir_p srv/.wp-cli"
+    "mkdir_p data/.wp-cli"
   ]
   add [
-    "set etc/config.yml path ${BASEDIR}/app"
+    "set conf/config.yml path ${BASEDIR}/app"
     "php app/wp-cli.php --path=app --allow-root config create --skip-check"
   ]
 }

@@ -4,7 +4,7 @@
   "port" : 9001,
   "dbType" : "dirty",
   "dbSettings" : {
-    "filename" : "srv/sqlite3.db",
+    "filename" : "data/sqlite3.db",
     "charset"  : "utf8mb4"
   },
   "trustProxy" : true

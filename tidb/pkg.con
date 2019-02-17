@@ -33,5 +33,5 @@ config {
   }
 }
 exec {
-  start "app/bin/tidb-server -config etc/config.toml"
+  start "app/bin/tidb-server -config conf/config.toml"
 }

@@ -58,7 +58,7 @@ aliases {
   postgressql "postgres"
 }
 exec {
-  start "app/gitea web -c ../etc/config.ini"
+  start "app/gitea web -c ../conf/config.ini"
 }
 env {
   GITEA_WORK_DIR "."

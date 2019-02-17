@@ -51,12 +51,12 @@ tags {
   }
 }
 exec {
-  start  "app/caddy -log stdout -agree=true -conf=etc/Caddyfile -root=srv"
+  start  "app/caddy -log stdout -agree=true -conf=conf/Caddyfile -root=data"
   reload "USR1"
-  check  "app/caddy validate -log stdout -conf=etc/Caddyfile"
+  check  "app/caddy validate -log stdout -conf=conf/Caddyfile"
 }
 env {
-  CADDYPATH "etc/cert"
+  CADDYPATH "conf/cert"
 }
 aliases {
   x86    "386"
@@ -64,15 +64,15 @@ aliases {
 }
 tasks {
   build [
-    "mkdir_p tmp app etc/cert"
+    "mkdir_p tmp app conf/cert"
     "getfile https://caddyserver.com/download/${KERNEL}/${ARCH_ALIAS}?license=personal tmp/caddy.tar.gz"
     "untar_gz tmp/caddy.tar.gz tmp"
     "mv tmp/caddy app/caddy"
-    "glob rm_r tmp/*"
+    "rm_r tmp"
 
     # Set permissions
-    "chmod etc/Caddyfile 640"
-    "chmod etc/cert 750"
+    "chmod conf/Caddyfile 640"
+    "chmod conf/cert 750"
 
     "if root_user? == true" [
       # Give the caddy binary the ability to bind to privileged ports (e.g. 80, 443) as a non-root user

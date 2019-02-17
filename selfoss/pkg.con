@@ -50,15 +50,15 @@ tasks {
     "mkdir app"
     "unzip selfoss-${VERSION}.zip app"
     "rm selfoss-${VERSION}.zip"
-    "mv app/data srv"
+    "mv app/data data"
   ]
   add [
     "if symlink? app/data == false" [
-      "symlink ../srv app/data"
+      "symlink ../data app/data"
     ]
     # configuration normalization
     "if file_exists? app/config.ini == false" [
-      "symlink ../etc/config.ini app/config.ini"
+      "symlink ../conf/config.ini app/config.ini"
     ]
   ]
 }

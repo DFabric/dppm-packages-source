@@ -1,6 +1,6 @@
 host = "[::1]"
 port = 4000
-path = "srv"
+path = "data"
 
 [log]
 format = "console"

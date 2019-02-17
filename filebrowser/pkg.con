@@ -56,7 +56,7 @@ databases {
   sqlite3 nil
 }
 exec {
-  start "app/filebrowser -c etc/config.json"
+  start "app/filebrowser -c conf/config.json"
 }
 aliases {
   x86-64  "amd64"
@@ -67,7 +67,7 @@ aliases {
 tasks {
   build [
     # Download the archive
-    "mkdir_p app srv/files"
+    "mkdir_p app data/files"
     "getfile https://github.com/filebrowser/filebrowser/releases/download/v${VERSION}/${KERNEL}-${ARCH_ALIAS}-filebrowser.tar.gz"
     "untar_gz ${KERNEL}-${ARCH_ALIAS}-filebrowser.tar.gz ."
     "mv filebrowser app/filebrowser"
