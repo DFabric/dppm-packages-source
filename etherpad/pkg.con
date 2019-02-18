@@ -44,7 +44,7 @@ vars [
   "app/package.json"
 ]
 exec {
-  start "libs/nodejs/bin/node node_modules/ep_etherpad-lite/node/server.js --apikey data/APIKEY.txt --sessionkey data/SESSIONKEY.txt --settings conf/config.json"
+  start "libs/nodejs/bin/node app/src/node/server.js --apikey ../data/APIKEY.txt --sessionkey ../data/SESSIONKEY.txt --settings ../conf/config.json"
 }
 env {
   NODE_ENV "production"
@@ -59,24 +59,13 @@ tasks {
     "untar_gz etherpad.tar.gz ."
     "mv etherpad-lite-${VERSION} app"
     "rm etherpad.tar.gz"
-
-    # Build
+    "node libs/nodejs/lib/node_modules/npm install --unsafe-perm --only=production --prefix app/src"
     "mkdir app/node_modules"
-    "mv app/src app/node_modules/ep_etherpad-lite"
-    "node libs/nodejs/lib/node_modules/npm install --unsafe-perm --only=production --prefix app/node_modules/ep_etherpad-lite"
-
-    # Copy templates
-    "cd app/node_modules/ep_etherpad-lite/static/custom"
-    "cp js.template index.js"
-    "cp js.template pad.js"
-    "cp js.template timeslider.js"
-    "cp css.template index.css"
-    "cp css.template pad.css"
-    "cp css.template timeslider.css"
   ]
   add [
     "if file_exists? node_modules == false" [
       "symlink app/node_modules node_modules"
+      "symlink ../src app/node_modules/ep_etherpad-lite"
     ]
   ]
 }
