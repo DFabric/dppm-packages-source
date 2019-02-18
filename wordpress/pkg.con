@@ -24,7 +24,7 @@ tags {
   }
 }
 config {
-  import "lib/php/bin/php app/wp-cli.php --path=app --allow-root config create --skip-check"
+  import "libs/php/bin/php app/wp-cli.php --path=app --allow-root config create --skip-check"
   origin "app/wp-config.php"
   vars {
     url               "url"

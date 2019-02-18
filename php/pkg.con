@@ -31,7 +31,7 @@ config {
   }
 }
 exec {
-  start  "lib/php/sbin/php-fpm --nodaemonize --allow-to-run-as-root --fpm-config conf/php/config.ini --prefix ."
-  test   "lib/php/sbin/php-fpm --nodaemonize --allow-to-run-as-root --fpm-config conf/php/config.ini --prefix . --test"
+  start  "libs/php/sbin/php-fpm --nodaemonize --allow-to-run-as-root --fpm-config conf/php/config.ini --prefix ."
+  test   "libs/php/sbin/php-fpm --nodaemonize --allow-to-run-as-root --fpm-config conf/php/config.ini --prefix . --test"
   reload "USR2"
 }

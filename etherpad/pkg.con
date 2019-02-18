@@ -44,7 +44,7 @@ vars [
   "app/package.json"
 ]
 exec {
-  start "lib/nodejs/bin/node node_modules/ep_etherpad-lite/node/server.js --apikey data/APIKEY.txt --sessionkey data/SESSIONKEY.txt --settings conf/config.json"
+  start "libs/nodejs/bin/node node_modules/ep_etherpad-lite/node/server.js --apikey data/APIKEY.txt --sessionkey data/SESSIONKEY.txt --settings conf/config.json"
 }
 env {
   NODE_ENV "production"
@@ -63,7 +63,7 @@ tasks {
     # Build
     "mkdir app/node_modules"
     "mv app/src app/node_modules/ep_etherpad-lite"
-    "node lib/nodejs/lib/node_modules/npm install --unsafe-perm --only=production --prefix app/node_modules/ep_etherpad-lite"
+    "node libs/nodejs/lib/node_modules/npm install --unsafe-perm --only=production --prefix app/node_modules/ep_etherpad-lite"
 
     # Copy templates
     "cd app/node_modules/ep_etherpad-lite/static/custom"

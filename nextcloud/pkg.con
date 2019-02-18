@@ -24,8 +24,8 @@ tags {
   }
 }
 config {
-  export "lib/php/bin/php -d memory_limit=512M app/occ config:list --private"
-  import "lib/php/bin/php -d memory_limit=512M app/occ config:import ../conf/config.json"
+  export "libs/php/bin/php -d memory_limit=512M app/occ config:list --private"
+  import "libs/php/bin/php -d memory_limit=512M app/occ config:import ../conf/config.json"
   origin "app/config/config.php"
   vars {
     url               "system.overwrite.cli.url"
