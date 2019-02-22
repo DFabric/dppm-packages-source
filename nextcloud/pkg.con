@@ -5,7 +5,7 @@ license     "AGPL-3.0"
 url         "https://nextcloud.com/"
 docs        "https://nextcloud.com/support/"
 description "A safe home for all your data"
-info        "Suite of client-server software for creating and using file hosting services. Default user|password is 'admin|1234'"
+info        "The first login is slow, please wait. Default user|password is 'admin|1234'."
 shared      false
 
 deps {
@@ -53,7 +53,7 @@ tasks {
     "mv nextcloud app"
   ]
   add [
-    "set conf/config.json system.trusted_domains[0] '${HOST}'"
+    "set conf/config.json system.trusted_domains[0] '${DOMAIN}'"
     "set conf/config.json system.datadirectory ${BASEDIR}/data"
     "if file_exists? data/index.yml == false" [
       "php -d memory_limit=512M app/occ maintenance:install --admin-pass=1234 --data-dir=${BASEDIR}/data"

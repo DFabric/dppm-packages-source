@@ -1,6 +1,11 @@
 {
   "system": {
     "trusted_domains": ["[::1]"],
-    "dbtype": "sqlite3"
+    "dbtype": "sqlite3",
+    "overwrite": {
+      "cli": {
+        "url": ""
+      }
+    }
   }
 }

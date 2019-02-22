@@ -33,6 +33,7 @@ tags {
 # https://docs.gitea.io/en-us/config-cheat-sheet/ 
 config {
   vars {
+    url               "server.ROOT_URL"
     domain            "server.DOMAIN"
     host              "server.HTTP_ADDR"
     port              "server.HTTP_PORT"

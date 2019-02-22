@@ -1,0 +1,15 @@
+http://[::1] {
+  gzip
+  fastcgi / unix:/srv/dppm/app/test/socket php
+
+  # Prevent malicious PHP uploads from running
+  rewrite {
+    r /uploads\/(.*)\.php
+    to /
+  }
+
+  rewrite {
+    if {path} not_match /wp-admin
+    to {path} {path}/ /index.php?{query}
+  }
+}
