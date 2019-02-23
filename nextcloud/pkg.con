@@ -56,7 +56,13 @@ tasks {
     "set conf/config.json system.trusted_domains[0] '${DOMAIN}'"
     "set conf/config.json system.datadirectory ${BASEDIR}/data"
     "if file_exists? data/index.yml == false" [
-      "php -d memory_limit=512M app/occ maintenance:install --admin-pass=1234 --data-dir=${BASEDIR}/data"
+      "database_type = get conf/config.json system.dbtype"
+      "if database_type == 'sqlite'" [
+        "php -d memory_limit=512M app/occ maintenance:install --admin-pass=1234 --data-dir=${BASEDIR}/data --database=${database_type}"
+      ]
+      "else" [
+        "php -d memory_limit=512M app/occ maintenance:install --admin-pass=1234 --data-dir=${BASEDIR}/data --database=${database_type} --database-name=${DATABASE_NAME} --database-host=${DATABASE_ADDRESS} --database-user=${DATABASE_USER} --database-pass=${DATABASE_PASSWORD}"
+      ]
       "php -d memory_limit=512M app/occ config:import ../conf/config.json"
       "content = php -d memory_limit=512M app/occ config:list --private"
       "write conf/config.json '${content}'"
