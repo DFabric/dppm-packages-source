@@ -20,7 +20,7 @@ version {
 tags {
   latest {
     src   "https://nextcloud.com/install/"
-    regex "(?<=nextcloud-).*(?=\.zip>D)"
+    regex "(?<=nextcloud-).*(?=\.zip\">D)"
   }
 }
 config {
