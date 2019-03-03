@@ -1,0 +1,36 @@
+package     "dppm"
+name        "DPPM"
+type        "app"
+license     "ISC"
+url         "https://dfabric.github.io/dppm/"
+docs        "https://dfabric.github.io/dppm/"
+description "An easy, universal way to install and manage applications"
+info        "Dedicated Platform Package Manager's REST API"
+shared       true
+
+version {
+  self {
+    src   "https://bitbucket.org/dfabric/packages/downloads/SHA512SUMS"
+    regex "(?<=dppm-static_).*(?=_linux_x86-64)"
+  }
+  linux {
+    arm64  nil
+    x86    nil
+    x86-64 nil
+  }
+}
+tags {
+  latest {
+    src   "https://bitbucket.org/dfabric/packages/downloads/SHA512SUMS"
+    regex "(?<=dppm-static_).*(?=_linux_x86-64)"
+  }
+}
+config {
+  vars {
+    port "port"
+    host "host"
+  }
+}
+exec {
+  start "app/bin/dppm server config=conf/config.con"
+}
