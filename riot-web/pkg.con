@@ -1,0 +1,38 @@
+package     "riot-web"
+name        "Riot web"
+type        "html"
+license     "Apache-2.0"
+url         "https://riot.im/"
+docs        "https://github.com/vector-im/riot-web/blob/master/README.md"
+description "A glossy Matrix collaboration web client"
+info        "To be used with a Matrix server"
+shared       false
+
+version {
+  self {
+    src   "https://github.com/vector-im/riot-web/ref-list/master?source_action=disambiguate&source_controller=files"
+    regex "(?<=title=\"v)[0-9.]+(?=\")"
+  }
+}
+tags {
+  latest {
+    src   "https://github.com/vector-im/riot-web/releases/latest"
+    regex "(?<=tag/v).*(?=\">)"
+  }
+}
+tasks {
+  build [
+    "getfile https://github.com/vector-im/riot-web/releases/download/v${VERSION}/riot-v${VERSION}.tar.gz riot.tar.gz"
+    "untar_gz riot.tar.gz ."
+    "mv riot-v${VERSION} app"
+    "rm riot.tar.gz"
+  ]
+  add [
+    "if file_exists? conf/config.json == false" [
+      "cp app/config.sample.json conf/config.json"
+    ]
+    "if file_exists? app/config.json == false" [
+      "symlink ../conf/config.json app/config.json"
+    ]
+  ]
+}
