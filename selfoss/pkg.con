@@ -1,13 +1,12 @@
 package     "selfoss"
 name        "selfoss"
-type        "app"
+type        "php"
 license     "GPL-3.0"
 url         "https://selfoss.aditu.de/"
 docs        "https://selfoss.aditu.de/#documentation"
 description "The new multipurpose rss reader, live stream, mashup, aggregation web application"
 info        "Do more that RSS like aggregation"
 shared      false
-runtime     "php"
 
 deps {
   php ">=5.4.0"
