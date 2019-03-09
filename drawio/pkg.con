@@ -1,0 +1,31 @@
+package     "drawio"
+name        "draw.io"
+type        "html"
+license     "Apache-2.0"
+url         "https://www.draw.io/"
+docs        "https://github.com/jgraph/drawio/blob/master/README.md"
+description "Online flowchart and diagram maker"
+info        "Online diagramming"
+shared       true
+
+version {
+  self {
+    src   "https://github.com/jgraph/drawio/ref-list/master?source_action=disambiguate&source_controller=files"
+    regex "(?<=title=\"v)[0-9.]+(?=\")"
+  }
+}
+tags {
+  latest {
+    src   "https://github.com/jgraph/drawio/releases/latest"
+    regex "(?<=tag/v).*(?=\">)"
+  }
+}
+tasks {
+  build [
+    "getfile https://github.com/jgraph/drawio/archive/v${VERSION}.tar.gz drawio.tar.gz"
+    "untar_gz drawio.tar.gz ."
+    "mv drawio-${VERSION}/src/main/webapp app"
+    "rm drawio.tar.gz"
+    "rm_r drawio-${VERSION}"
+  ]
+}
