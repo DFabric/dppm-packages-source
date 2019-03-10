@@ -1,6 +1,5 @@
 http://[::1] {
   gzip
-  fastcgi / unix:/srv/dppm/app/test/socket php
 
   # Prevent malicious PHP uploads from running
   rewrite {
