@@ -13,7 +13,7 @@ deps {
 }
 version {
   self {
-    src   "https://github.com/SSilence/selfoss"
+    src   "https://github.com/SSilence/selfoss/ref-list/master?source_action=disambiguate&source_controller=files"
     regex "(?<=title=\")[0-9.]+(?=\")"
   }
 }
@@ -45,10 +45,10 @@ aliases {
 }
 tasks {
   build [
-    "getfile https://github.com/SSilence/selfoss/releases/download/${VERSION}/selfoss-${VERSION}.zip"
+    "getfile https://github.com/SSilence/selfoss/releases/download/${VERSION}/selfoss-${VERSION}.zip selfoss.zip"
     "mkdir app"
-    "unzip selfoss-${VERSION}.zip app"
-    "rm selfoss-${VERSION}.zip"
+    "unzip selfoss.zip app"
+    "rm selfoss.zip"
     "mv app/data data"
   ]
   add [
