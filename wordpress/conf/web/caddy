@@ -1,14 +1,14 @@
 http://[::1] {
-  gzip
+    gzip
 
-  # Prevent malicious PHP uploads from running
-  rewrite {
-    r /uploads\/(.*)\.php
-    to /
-  }
+    # Prevent malicious PHP uploads from running
+    rewrite {
+        r /uploads\/(.*)\.php
+        to /
+    }
 
-  rewrite {
-    if {path} not_match /wp-admin
-    to {path} {path}/ /index.php?{query}
-  }
+    rewrite {
+        if {path} not_match /wp-admin
+        to {path} {path}/ /index.php?{query}
+    }
 }

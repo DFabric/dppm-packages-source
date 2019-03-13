@@ -1,0 +1,15 @@
+http://[::1] {
+    rewrite {
+        r ^/(favicons|thumbnails)/.*$
+        to /data/{1}
+    }
+
+    rewrite {
+        to {path} public/{path} /index.php?{query}
+    }
+
+    status 403 {
+        /data
+        /config.ini
+    }
+}
