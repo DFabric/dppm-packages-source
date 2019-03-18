@@ -1,6 +1,6 @@
 package     "gitea"
 name        "Gitea"
-type        "app"
+type        "HTTP"
 license     "MIT"
 url         "https://gitea.io/"
 docs        "https://docs.gitea.io/"

@@ -1,6 +1,6 @@
 package     "wordpress"
 name        "WordPress"
-type        "php"
+type        "PHP"
 license     "GPL-2.0"
 url         "https://wordpress.org/"
 docs        "https://codex.wordpress.org/"

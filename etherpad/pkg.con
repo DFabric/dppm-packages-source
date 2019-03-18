@@ -1,6 +1,6 @@
 package     "etherpad"
 name        "Etherpad"
-type        "app"
+type        "HTTP"
 license     "MIT"
 url         "http://etherpad.org/"
 docs        "https://github.com/ether/etherpad-lite/wiki"

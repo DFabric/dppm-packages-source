@@ -1,6 +1,6 @@
 package     "riot-web"
 name        "Riot web"
-type        "html"
+type        "HTML"
 license     "Apache-2.0"
 url         "https://riot.im/"
 docs        "https://github.com/vector-im/riot-web/blob/master/README.md"

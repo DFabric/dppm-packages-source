@@ -1,6 +1,6 @@
 package     "tidb"
 name        "TiDB"
-type        "app"
+type        "TCP"
 license     "Apache-2.0"
 url         "https://www.pingcap.com/"
 docs        "https://www.pingcap.com/docs/"

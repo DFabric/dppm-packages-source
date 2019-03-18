@@ -1,6 +1,6 @@
 package     "nextcloud"
 name        "Nextcloud"
-type        "php"
+type        "PHP"
 license     "AGPL-3.0"
 url         "https://nextcloud.com/"
 docs        "https://nextcloud.com/support/"

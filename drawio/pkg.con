@@ -1,6 +1,6 @@
 package     "drawio"
 name        "draw.io"
-type        "html"
+type        "HTML"
 license     "Apache-2.0"
 url         "https://www.draw.io/"
 docs        "https://github.com/jgraph/drawio/blob/master/README.md"

@@ -1,6 +1,6 @@
 package     "dppm"
 name        "DPPM"
-type        "app"
+type        "HTTP"
 license     "ISC"
 url         "https://dfabric.github.io/dppm/"
 docs        "https://dfabric.github.io/dppm/"
