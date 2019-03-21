@@ -9,7 +9,7 @@ info        "pear is also included"
 
 version {
   self {
-    src "https://bitbucket.org/dfabric/packages/downloads/SHA512SUMS"
+    src "https://bintray.com/dfabric/apps-static/download_file?file_path=SHA512SUMS"
   }
   linux {
     arm64  "(?<=php-static_).*(?=_linux_arm64)"
@@ -19,7 +19,7 @@ version {
 }
 tags {
   latest {
-    src   "https://bitbucket.org/dfabric/packages/downloads/SHA512SUMS"
+    src   "https://bintray.com/dfabric/apps-static/download_file?file_path=SHA512SUMS"
     regex "(?<=php-static_).*(?=_linux_arm64)"
   }
 }
@@ -33,4 +33,12 @@ exec {
   start  "libs/php/sbin/php-fpm --nodaemonize --allow-to-run-as-root --fpm-config conf/php/config.ini --prefix ."
   test   "libs/php/sbin/php-fpm --nodaemonize --allow-to-run-as-root --fpm-config conf/php/config.ini --prefix . --test"
   reload "USR2"
+}
+tasks {
+  build [
+    "getfile https://bintray.com/dfabric/apps-static/download_file?file_path=php-static_${VERSION}_${KERNEL}_${ARCH}.tar.xz php-static.tar.xz"
+    "untar_xz php-static.tar.xz ."
+    "rm php-static.tar.xz"
+    "mv php-static_${VERSION}_${KERNEL}_${ARCH} app"
+  ]
 }

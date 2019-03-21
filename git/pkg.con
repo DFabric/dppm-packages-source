@@ -9,7 +9,7 @@ info         "git"
 
 version {
   self {
-    src "https://bitbucket.org/dfabric/packages/downloads/SHA512SUMS"
+    src "https://bintray.com/dfabric/apps-static/download_file?file_path=SHA512SUMS"
   }
   linux {
     arm64  "(?<=git-static_).*(?=_linux_arm64)"
@@ -19,7 +19,15 @@ version {
 }
 tags {
   latest {
-    src   "https://bitbucket.org/dfabric/packages/downloads/SHA512SUMS"
+    src   "https://bintray.com/dfabric/apps-static/download_file?file_path=SHA512SUMS"
     regex "(?<=git-static_).*(?=_linux_arm64)"
   }
+}
+tasks {
+  build [
+    "getfile https://bintray.com/dfabric/apps-static/download_file?file_path=git-static_${VERSION}_${KERNEL}_${ARCH}.tar.xz git-static.tar.xz"
+    "untar_xz git-static.tar.xz ."
+    "rm git-static.tar.xz"
+    "mv git-static_${VERSION}_${KERNEL}_${ARCH} app"
+  ]
 }
