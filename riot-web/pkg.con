@@ -17,7 +17,7 @@ version {
 tags {
   latest {
     src   "https://github.com/vector-im/riot-web/releases/latest"
-    regex "(?<=tag/v).*(?=\">)"
+    regex "(?<=\">v).*(?=</a>)"
   }
 }
 tasks {

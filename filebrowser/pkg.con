@@ -43,7 +43,7 @@ version {
 tags {
   latest {
     src   "https://github.com/filebrowser/filebrowser/releases/latest"
-    regex "(?<=tag/v).*(?=\">)"
+    regex "(?<=\">v).*(?=</a>)"
   }
 }
 config {

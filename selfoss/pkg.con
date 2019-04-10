@@ -20,7 +20,7 @@ version {
 tags {
   latest {
     src   "https://github.com/SSilence/selfoss/releases/latest"
-    regex "(?<=tag/).*(?=\">)"
+    regex "(?<=\">).*(?=</a>)"
   }
 }
 config {

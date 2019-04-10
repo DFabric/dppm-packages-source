@@ -27,7 +27,7 @@ version {
 tags {
   latest {
     src   "https://github.com/go-gitea/gitea/releases/latest"
-    regex "(?<=tag/v).*(?=\">)"
+    regex "(?<=\">v).*(?=</a>)"
   }
 }
 # https://docs.gitea.io/en-us/config-cheat-sheet/ 
