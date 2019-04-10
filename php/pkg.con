@@ -39,6 +39,6 @@ tasks {
     "getfile https://bintray.com/dfabric/apps-static/download_file?file_path=php-static_${VERSION}_${KERNEL}_${ARCH}.tar.xz php-static.tar.xz"
     "untar_xz php-static.tar.xz ."
     "rm php-static.tar.xz"
-    "mv php-static_${VERSION}_${KERNEL}_${ARCH} app"
+    "glob mv php-static_${VERSION}_${KERNEL}_${ARCH}/* ."
   ]
 }

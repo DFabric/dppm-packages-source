@@ -40,6 +40,6 @@ tasks {
     "getfile https://bintray.com/dfabric/apps-static/download_file?file_path=tidb-static_${VERSION}_${KERNEL}_${ARCH}.tar.xz tidb-static.tar.xz"
     "untar_xz tidb-static.tar.xz ."
     "rm tidb-static.tar.xz"
-    "mv tidb-static_${VERSION}_${KERNEL}_${ARCH} app"
+    "glob mv tidb-static_${VERSION}_${KERNEL}_${ARCH}/* ."
   ]
 }

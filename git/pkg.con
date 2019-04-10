@@ -28,6 +28,6 @@ tasks {
     "getfile https://bintray.com/dfabric/apps-static/download_file?file_path=git-static_${VERSION}_${KERNEL}_${ARCH}.tar.xz git-static.tar.xz"
     "untar_xz git-static.tar.xz ."
     "rm git-static.tar.xz"
-    "mv git-static_${VERSION}_${KERNEL}_${ARCH} app"
+    "glob mv git-static_${VERSION}_${KERNEL}_${ARCH}/* ."
   ]
 }
