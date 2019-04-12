@@ -1,0 +1,50 @@
+package     "minetest"
+name        "Minetest"
+type        "UDP"
+license     "LGPL-2.1"
+url         "https://www.minetest.net/"
+docs        "https://dev.minetest.net/Main_Page"
+description "Infinite-world block sandbox game engine with support for survival and crafting"
+info        "Listen to an UDP port"
+shared      true
+
+version {
+  self {
+    src "https://bintray.com/dfabric/apps-static/download_file?file_path=SHA512SUMS"
+  }
+  linux {
+    arm64  "(?<=minetest-static_).*(?=_linux_arm64)"
+    armhf  "(?<=minetest-static_).*(?=_linux_armhf)"
+    x86-64 "(?<=minetest-static_).*(?=_linux_x86-64)"
+  }
+}
+tags {
+  latest {
+    src   "https://bintray.com/dfabric/apps-static/download_file?file_path=SHA512SUMS"
+    regex "(?<=minetest-static_).*(?=_linux_x86-64)"
+  }
+}
+config {
+  vars {
+    host   ".bind_address"
+    port   ".port"
+    domain ".server_address"
+  }
+}
+exec {
+  start  "app/bin/minetestserver --config conf/config.ini --world data"
+  reload "HUP"
+}
+tasks {
+  build [
+    "getfile https://bintray.com/dfabric/apps-static/download_file?file_path=minetest-static_${VERSION}_${KERNEL}_${ARCH}.tar.xz minetest-static.tar.xz"
+    "untar_xz minetest-static.tar.xz ."
+    "rm minetest-static.tar.xz"
+    "mv minetest-static_${VERSION}_${KERNEL}_${ARCH} app"
+    # Download default Minetest game
+    "getfile https://github.com/minetest/minetest_game/archive/${VERSION}.tar.gz minetest_game.tar.gz"
+    "untar_gz minetest_game.tar.gz app/games"
+    "mv app/games/minetest_game-${VERSION} app/games/minetest_game"
+    "rm minetest_game.tar.gz"
+  ]
+}
