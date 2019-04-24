@@ -29,7 +29,7 @@ config {
     host        ".host"
     port        ".port"
     port_status "status.status-port"
-    socket      ".socket"
+  # socket      ".socket"
   }
 }
 exec {
@@ -40,6 +40,6 @@ tasks {
     "getfile https://bintray.com/dfabric/apps-static/download_file?file_path=tidb-static_${VERSION}_${KERNEL}_${ARCH}.tar.xz tidb-static.tar.xz"
     "untar_xz tidb-static.tar.xz ."
     "rm tidb-static.tar.xz"
-    "glob mv tidb-static_${VERSION}_${KERNEL}_${ARCH}/* ."
+    "mv tidb-static_${VERSION}_${KERNEL}_${ARCH} app"
   ]
 }
