@@ -63,9 +63,7 @@ tasks {
     "mkdir app/node_modules"
   ]
   add [
-    "if file_exists? node_modules == false" [
-      "symlink app/node_modules node_modules"
-      "symlink ../src app/node_modules/ep_etherpad-lite"
-    ]
+    "symlink app/node_modules node_modules"
+    "symlink ../src app/node_modules/ep_etherpad-lite"
   ]
 }

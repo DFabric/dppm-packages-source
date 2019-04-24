@@ -52,12 +52,7 @@ tasks {
     "mv app/data data"
   ]
   add [
-    "if symlink? app/data == false" [
-      "symlink ../data app/data"
-    ]
-    # configuration normalization
-    "if file_exists? app/config.ini == false" [
-      "symlink ../conf/config.ini app/config.ini"
-    ]
+    "symlink ../data app/data"
+    "symlink ../conf/config.ini app/config.ini"
   ]
 }

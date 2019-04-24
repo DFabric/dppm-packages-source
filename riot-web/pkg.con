@@ -28,11 +28,7 @@ tasks {
     "rm riot.tar.gz"
   ]
   add [
-    "if file_exists? conf/config.json == false" [
-      "cp app/config.sample.json conf/config.json"
-    ]
-    "if file_exists? app/config.json == false" [
-      "symlink ../conf/config.json app/config.json"
-    ]
+    "cp app/config.sample.json conf/config.json"
+    "symlink ../conf/config.json app/config.json"
   ]
 }

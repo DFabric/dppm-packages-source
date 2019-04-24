@@ -52,6 +52,8 @@ tasks {
     "mkdir_p data/.wp-cli"
   ]
   add [
+    "mv app/wp-content data/wp-content"
+    "symlink ../data/wp-content app/wp-content"
     "set conf/config.yml path ${BASEDIR}/app"
     "php app/wp-cli.php --path=app --allow-root config create --skip-check"
   ]

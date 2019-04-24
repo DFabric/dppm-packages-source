@@ -46,11 +46,7 @@ tasks {
     "mkdir_p data/completed data/progress data/watched"
   ]
   add [
-    # configuration normalization
-    "if file_exists? data/settings.json == false" [
-      "symlink ../conf/config.json data/settings.json"
-    ]
-    # Set umask to 027
+    "symlink ../conf/config.json data/settings.json"
     "set conf/config.json umask 23"
   ]
 }
