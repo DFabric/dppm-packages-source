@@ -5,7 +5,7 @@ license     "GPL-3.0"
 url         "https://selfoss.aditu.de/"
 docs        "https://selfoss.aditu.de/#documentation"
 description "The new multipurpose rss reader, live stream, mashup, aggregation web application"
-info        "Do more that RSS like aggregation"
+info        "Do more than RSS, like media aggregation"
 shared      false
 
 deps {
@@ -20,7 +20,7 @@ version {
 tags {
   latest {
     src   "https://github.com/SSilence/selfoss/releases/latest"
-    regex "(?<=\">).*(?=</a>)"
+    regex "(?<=archive/).*(?=\\.zip)"
   }
 }
 config {
