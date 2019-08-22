@@ -29,5 +29,6 @@ tasks {
     "untar_xz git-static.tar.xz ."
     "rm git-static.tar.xz"
     "glob mv git-static_${VERSION}_${KERNEL}_${ARCH}/* ."
+    "rm_r git-static_${VERSION}_${KERNEL}_${ARCH}"
   ]
 }

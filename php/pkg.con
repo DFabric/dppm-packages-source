@@ -40,5 +40,6 @@ tasks {
     "untar_xz php-static.tar.xz ."
     "rm php-static.tar.xz"
     "glob mv php-static_${VERSION}_${KERNEL}_${ARCH}/* ."
+    "rm_r php-static_${VERSION}_${KERNEL}_${ARCH}"
   ]
 }
