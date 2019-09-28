@@ -47,9 +47,9 @@ aliases {
 }
 tasks {
   build [
-    "getfile https://download.nextcloud.com/server/releases/nextcloud-${VERSION}.tar.bz2"
-    "untar_bz2 nextcloud-${VERSION}.tar.bz2 ."
-    "rm nextcloud-${VERSION}.tar.bz2"
+    "getfile https://download.nextcloud.com/server/releases/nextcloud-${VERSION}.zip"
+    "unzip nextcloud-${VERSION}.zip ."
+    "rm nextcloud-${VERSION}.zip"
     "mv nextcloud app"
   ]
   add [
