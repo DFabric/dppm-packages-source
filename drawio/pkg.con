@@ -10,7 +10,7 @@ shared       true
 
 version {
   self {
-    src   "https://github.com/jgraph/drawio/ref-list/master?source_action=disambiguate&source_controller=files"
+    src   "https://github.com/jgraph/drawio/refs-tags/master?source_action=disambiguate&source_controller=files"
     regex "(?<=title=\"v)[0-9.]+(?=\")"
   }
 }

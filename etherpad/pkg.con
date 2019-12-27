@@ -13,7 +13,7 @@ deps {
 }
 version {
   self {
-    src   "https://github.com/ether/etherpad-lite/ref-list/master?source_action=disambiguate&source_controller=files"
+    src   "https://github.com/ether/etherpad-lite/refs-tags/master?source_action=disambiguate&source_controller=files"
     regex "(?<=title=\")[0-9.]+(?=\")"
   }
 }

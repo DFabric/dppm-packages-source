@@ -10,7 +10,7 @@ shared       false
 
 version {
   self {
-    src   "https://github.com/vector-im/riot-web/ref-list/master?source_action=disambiguate&source_controller=files"
+    src   "https://github.com/vector-im/riot-web/refs-tags/master?source_action=disambiguate&source_controller=files"
     regex "(?<=title=\"v)[0-9.]+(?=\")"
   }
 }
