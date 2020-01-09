@@ -20,7 +20,7 @@ version {
 tags {
   latest {
     src   "https://github.com/ether/etherpad-lite/releases/latest"
-    regex "(?<=\">).*(?=</a>)"
+    regex "(?<=archive/).*(?=.zip)"
   }
 }
 config {

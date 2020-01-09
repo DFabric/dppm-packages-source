@@ -47,7 +47,7 @@ version {
 tags {
   latest {
     src   "https://github.com/mholt/caddy/releases/latest"
-    regex "(?<=archive/v).*(?=.zip)"
+    regex "(?<=archive/v).*(?=\\.zip)"
   }
 }
 exec {
