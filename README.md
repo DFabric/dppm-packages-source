@@ -10,4 +10,4 @@ Each `pkg.con` file follows the [CON format specification](https://github.com/j8
 
 ## License
 
-Copyright (c) 2018-2019 Julien Reichardt - ISC License
+Copyright (c) 2018-2020 Julien Reichardt - ISC License
